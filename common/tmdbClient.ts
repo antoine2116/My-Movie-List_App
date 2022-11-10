@@ -7,8 +7,8 @@ export const tmdbClient = {
     params?: queryString.StringifiableRecord,
   ): Promise<T> => {
     const response = await httpClient.get<T>(
-      `${process.env.API_URL}${endpoint}`,
-      { ...params, api_key: process.env.API_KEY },
+      `${process.env.TMDB_URL}${endpoint}`,
+      { ...params, api_key: process.env.TMDB_TOKEN },
     );
     return response;
   }
