@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Navbar from "./navigation/navbar";
+import ProgressBar from "./navigation/progress-bar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -12,6 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 			<div className="h-screen overflow-hidden">
 				<Navbar />
+				<ProgressBar />
 				<div className="container flex flex-col px-2 mx-auto">
 					<main>{children}</main>
 				</div>

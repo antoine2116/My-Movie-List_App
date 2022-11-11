@@ -26,17 +26,17 @@ export default function MovieList() {
 	});
 
 	const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-		if (event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight - 100)) {
+		if (event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight - 200)) {
 			fetchNextPage();
 		}
 	}
 	
-	if (status === "error") return (<div>Erreur </div>)
+	if (status === "error") return (<div>Erreur</div>)
 	if (status === "loading") return(<></>)
 
 	return (
 		<>
-			<div className="mx-16">
+			<div className="mx-4 sm:mx-8 md:mx-16">
 				<SearchBar />
 				<div className="h-auto max-h-full overflow-y-auto pr-3" style={{ height: 'calc(100vh - 70px - 86px)' }} onScroll={handleScroll}>
 					<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
