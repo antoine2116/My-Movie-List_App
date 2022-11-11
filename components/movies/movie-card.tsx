@@ -8,8 +8,10 @@ interface MovieCardProps {
 }
 
 export default function MovieCard({ movie }: MovieCardProps) {
-  const handleLoadComplete = (image: any) => {
-    image.classList.remove("bg-blue-500");
+  const [imageLoading, setImageLoading] = React.useState(true);
+
+  const handleLoadImageComplete = (image: any) => {
+    setImageLoading(false);
   }
 
   return (
@@ -20,15 +22,15 @@ export default function MovieCard({ movie }: MovieCardProps) {
           height={750} 
           src={getImageUrl(movie.poster_path)} 
           alt={movie.title}
-          className="rounded-lg shadow-lg aspect-[500/750] loading"
-          onLoadingComplete={handleLoadComplete}
+          className={`rounded-lg aspect-[500/750] ${imageLoading ? "loading" : ""}`}
+          onLoadingComplete={handleLoadImageComplete}
         />
       </div>
       <div>
-        <div className="font-semibold mt-2">
+        <div className={`font-semibold mt-2 ${imageLoading ? "loading" : ""}`}>
           {movie.title}
         </div>
-        <div className="text-sm text-gray-600">
+        <div className={`text-sm text-gray-600 ${imageLoading ? "loading" : ""}`}>
           {movie.release_date}
         </div>
       </div>
