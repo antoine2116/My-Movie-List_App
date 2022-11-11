@@ -4,6 +4,7 @@ import SearchBar from "../utils/search-bar";
 import MovieCard from "./movie-card";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
+import Spinner from "../utils/spinner";
 
 export default function MovieList() {
 	const fetchMovies = async ({ pageParam = 1 }) => {
@@ -49,6 +50,11 @@ export default function MovieList() {
 							</React.Fragment>
 						))}
 					</div>
+					{
+						isFetchingNextPage 
+							? <Spinner />  
+							: null
+					}
 				</div>
 			</div>
 		</>

@@ -9,7 +9,13 @@ const getPopularMovies = async (page:number) => {
       page: page 
     }
   );
+
+
   return response;
+}
+
+function timeout(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 export const moviesService = {
