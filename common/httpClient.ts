@@ -10,7 +10,6 @@ export const httpClient = {
         return res.json();
       } else {
         let message = res.statusText;
-    
         try {
           const errorJson = res.json();
           console.log(errorJson);
@@ -19,5 +18,5 @@ export const httpClient = {
         }
       }
     }
-  ),
+  )
 };

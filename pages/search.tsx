@@ -1,33 +1,21 @@
 import { useRouter } from "next/router";
-import { httpClient } from "../common/httpClient";
+import { getStringQueryParam } from "../common/helpers/QueryHelper";
+import { APIQueries } from "../common/APIQueries";
 import MovieList from "../components/movies/MovieList";
 import SearchBar from "../components/utils/search-bar";
-import { Movie } from "../models/movie";
-import { PaginationResponse } from "../models/paginationResponse";
 
 function Search() {
   const router = useRouter();
-
-  // TODO : Fix se<arch varialbe set to undefined on first render
-  const fetchSearchedMovies = async ({ pageParam = 1 }) => {
-
-    const { search } = router.query;
-
-    console.log(search);
-    
-		return await httpClient.get<PaginationResponse<Movie>>(
-      "/api/search/movie",
-      {
-        page: pageParam,
-        query: search
-      });
-	};
-
+  const search = getStringQueryParam("search", router.query);
 
   return (
     <>
-      <SearchBar search={""} />
-      <MovieList queryFn={fetchSearchedMovies} />
+      <SearchBar search={search} />
+      { // TODO : find a better solution (search = undefined on first render so error on API call)
+        search && ( 
+          <MovieList query={APIQueries.searchMovie(search)} />
+        )
+      }
     </>
   )
 }

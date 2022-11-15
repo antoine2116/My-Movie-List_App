@@ -1,28 +1,21 @@
 import MovieCard from "./MovieCard";
-import { QueryFunction, useInfiniteQuery } from "@tanstack/react-query";
+import { QueryFunction, useInfiniteQuery, UseInfiniteQueryOptions } from "@tanstack/react-query";
 import React from "react";
 import Spinner from "../utils/spinner";
 import { Movie } from "../../models/movie";
 import { PaginationResponse } from "../../models/paginationResponse";
 
 interface MovieListProps {
-	queryFn: QueryFunction<PaginationResponse<Movie>>;
+	query: UseInfiniteQueryOptions<PaginationResponse<Movie>>;
 }
 
-export default function MovieList({ queryFn } : MovieListProps){
+export default function MovieList({ query } : MovieListProps){
 	const {
 		data,
-		error,
 		fetchNextPage,
-		hasNextPage,
-		isFetching,
 		isFetchingNextPage,
 		status
-	} = useInfiniteQuery<PaginationResponse<Movie>>({
-		queryKey: ["movies"],
-		queryFn: queryFn,
-		getNextPageParam: (lastPage, pages) => lastPage.page + 1
-	});
+	} = useInfiniteQuery<PaginationResponse<Movie>>(query);
 
 	const handleScroll = (event: React.UIEvent<HTMLElement>) => {
 		if (event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight - 200)) {
