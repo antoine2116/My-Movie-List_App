@@ -18,7 +18,7 @@ export default function MovieList({ query } : MovieListProps){
 	} = useInfiniteQuery<PaginationResponse<Movie>>(query);
 
 	const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-		if (event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight - 200)) {
+		if (!isFetchingNextPage && event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight)) {
 			fetchNextPage();
 		}
 	}

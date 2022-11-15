@@ -12,9 +12,7 @@ function Search() {
     <>
       <SearchBar search={search} />
       { // TODO : find a better solution (search = undefined on first render so error on API call)
-        search && ( 
-          <MovieList query={APIQueries.searchMovie(search)} />
-        )
+        search && <MovieList query={APIQueries.searchMovie(search)} />
       }
     </>
   )
