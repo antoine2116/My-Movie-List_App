@@ -1,4 +1,4 @@
-import { httpClient } from './httpClient';
+import { httpClient } from './HttpClient';
 import queryString from 'query-string';
 
 export const tmdbClient = {

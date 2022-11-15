@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { moviesService } from "../../../common/moviesService";
+import { moviesService } from "../../../common/services/MoviesService";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const page = Number(req.query.page);

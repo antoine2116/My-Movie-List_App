@@ -1,7 +1,7 @@
-import { Movie } from "../../models/movie";
 import Image from "next/image";
-import { getImageUrl } from "../../common/helpers/imageHelper";
 import React from "react";
+import { getImageUrl } from "../../common/helpers/imageHelper";
+import { Movie } from "../../models/movie";
 
 interface MovieCardProps {
   movie: Movie;

@@ -1,9 +1,9 @@
-import { Movie } from "../../models/movie";
-import { PaginationResponse } from "../../models/paginationResponse";
-import MovieCard from "./movie-card";
+import MovieCard from "./MovieCard";
 import { QueryFunction, useInfiniteQuery } from "@tanstack/react-query";
 import React from "react";
 import Spinner from "../utils/spinner";
+import { Movie } from "../../models/movie";
+import { PaginationResponse } from "../../models/paginationResponse";
 
 interface MovieListProps {
 	queryFn: QueryFunction<PaginationResponse<Movie>>;

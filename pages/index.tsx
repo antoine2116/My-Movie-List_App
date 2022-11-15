@@ -1,8 +1,8 @@
-import { httpClient } from "../common/httpClient";
-import MovieList from "../components/movies/movie-list";
+import { httpClient } from "../common/HttpClient";
+import MovieList from "../components/movies/MovieList";
 import SearchBar from "../components/utils/search-bar";
-import { Movie } from "../models/movie";
-import { PaginationResponse } from "../models/paginationResponse";
+import { Movie } from "../models/Movie";
+import { PaginationResponse } from "../models/PaginationResponse";
 
 function Home() {
 
