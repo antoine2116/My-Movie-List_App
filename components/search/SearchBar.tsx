@@ -1,21 +1,24 @@
 import { useRouter } from "next/dist/client/router";
 import React, { ReactEventHandler, useState } from "react";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
+import SearchSuggestionList from "./SearchSuggestionList";
 
 function SearchBar() {
   const router = useRouter();
   const search = getStringQueryParam("search", router.query);
   const [searchValue, setSearchValue] = useState(search);
-  
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+    setShowSuggestions(e.target.value !== "");
   }
 
   const handleClearValue = () => {
     setSearchValue("");
   }
 
-  const handleSearch = (e: React.FormEvent) => { 
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (searchValue) {
@@ -34,7 +37,7 @@ function SearchBar() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
-        <input type="search" id="search" name="search" value={searchValue} onChange={handleInputChange} className="block p-4 pl-10 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:outline-none" placeholder="Search"></input>
+        <input type="search" id="search" name="search" value={searchValue} onChange={handleInputChange} className={`block p-4 pl-10 w-full text-sm text-gray-900 ${showSuggestions ? 'rounded-t-lg' : 'rounded-lg'} border border-gray-200 focus:outline-none`} placeholder="Search"></input>
         {searchValue && (
           <button type="button" onClick={handleClearValue} className="flex absolute inset-y-0 right-24 items-center pl-3">
             <svg width="20" height="20" viewBox="0 0 20 20">
@@ -43,6 +46,9 @@ function SearchBar() {
           </button>
         )}
         <button type="button" onClick={handleSearch} className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+        {showSuggestions && (
+          <SearchSuggestionList />
+        )}
       </div>
     </form>
   )
