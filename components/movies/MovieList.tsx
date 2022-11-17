@@ -41,7 +41,8 @@ export default function MovieList({ query } : MovieListProps){
 							<React.Fragment key={i}>
 								{group.results.map((movie: Movie) => (
 									<MovieCard 
-										key={movie.id} movie={movie} />
+										key={movie.id} 
+										movie={movie} />
 								))}
 							</React.Fragment>
 						))}

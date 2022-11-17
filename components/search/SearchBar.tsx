@@ -1,17 +1,36 @@
 import { useRouter } from "next/dist/client/router";
 import React, { ReactEventHandler, useState } from "react";
+import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import SearchSuggestionList from "./SearchSuggestionList";
 
 function SearchBar() {
   const router = useRouter();
   const search = getStringQueryParam("search", router.query);
+
   const [searchValue, setSearchValue] = useState(search);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     setShowSuggestions(e.target.value !== "");
+  }
+
+  const handleInputFocus = () => {
+    setShowSuggestions(searchValue !== "");
+  }
+
+  const handleInputBlur = () => {
+    setShowSuggestions(false);
+  }
+
+  // TOOD : arrow up/down : select sugggestion, enter : go to movie page
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowDown") {
+      // Down      
+    } else if (e.key === "ArrowUp") {
+      // Up
+    }
   }
 
   const handleClearValue = () => {
@@ -30,24 +49,37 @@ function SearchBar() {
   };
 
   return (
-    <form onSubmit={handleSearch} className="flex flex-wrap justify-center items-center mx-auto py-4">
+    <form className="flex flex-wrap justify-center items-center mx-auto py-4"
+      onSubmit={handleSearch}>
       <div className="relative w-full md:w-1/2 lg:1/3">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
           <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
-        <input type="search" id="search" name="search" value={searchValue} onChange={handleInputChange} className={`block p-4 pl-10 w-full text-sm text-gray-900 ${showSuggestions ? 'rounded-t-lg' : 'rounded-lg'} border border-gray-200 focus:outline-none`} placeholder="Search"></input>
+        <input type="search" id="search" name="search" className={`block p-4 pl-10 w-full text-sm text-gray-900 ${showSuggestions ? 'rounded-t-lg' : 'rounded-lg'} border border-gray-200 focus:outline-none`} placeholder="Search"
+          value={searchValue}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          autoComplete="off"
+        ></input>
         {searchValue && (
-          <button type="button" onClick={handleClearValue} className="flex absolute inset-y-0 right-24 items-center pl-3">
+          <button type="button" className="flex absolute inset-y-0 right-24 items-center pl-3"
+            onClick={handleClearValue}
+          >
             <svg width="20" height="20" viewBox="0 0 20 20">
               <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z" stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"></path>
             </svg>
           </button>
         )}
-        <button type="button" onClick={handleSearch} className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+        <button type="button" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2"
+          onClick={handleSearch}
+        >
+          Search
+        </button>
         {showSuggestions && (
-          <SearchSuggestionList />
+          <SearchSuggestionList query={APIQueries.searchMovie(searchValue)} />
         )}
       </div>
     </form>
