@@ -6,6 +6,8 @@ interface SearchInputProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onClear: React.MouseEventHandler<HTMLButtonElement>;
   onFocus: React.FocusEventHandler<HTMLInputElement>;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
+  onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
 function SearchInput({ 
@@ -13,7 +15,9 @@ function SearchInput({
   onChange,
   onClear,
   onFocus,
-  suggestionsVisible
+  suggestionsVisible,
+  onBlur,
+  onKeyDown
 }: SearchInputProps) {
 
   return (
@@ -33,6 +37,8 @@ function SearchInput({
         value={search}
         onChange={onChange}
         onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
       ></input>
       <ClearIncon 
         search={search}

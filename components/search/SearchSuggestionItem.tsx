@@ -5,15 +5,17 @@ import { getImageUrl } from "../../common/helpers/ImageHelper";
 
 interface SearchSuggestionItemProps {
   movie: Movie;
+  selected: boolean;
 }
 
 function SearchSuggestionItem({ 
-  movie 
+  movie,
+  selected
 }: SearchSuggestionItemProps) {
   return (
     <li>
       <Link href={`/movies/${movie.id}`}>
-        <div className="h-14 p-3 flex items-center hover:bg-gray-100 hover:cursor-pointer">
+        <div className={`h-14 p-3 flex items-center hover:bg-gray-100 hover:cursor-pointer ${selected ? "bg-gray-100" : ""}`}>
           <Image
             width={30}
             height={50}

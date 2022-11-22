@@ -15,6 +15,8 @@ function SearchBar() {
   const [searchValue, setSearchValue] = useState(search);
   const [isFocused, setIsFocused] = useState(false);
   const [isSuggestionsVisibible, setIsSuggestionsVisible] = useState(false);
+  const [ignoreBlur, setIgnoreBlur] = useState(false);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
 
   const {data, status} = useQuery<PaginationResponse<Movie>>(APIQueries.searchMovie(searchValue));
 
@@ -30,6 +32,9 @@ function SearchBar() {
     } else {
       setIsSuggestionsVisible(false);
     }
+
+    setSelectedItemIndex(-1);
+
   }, [isFocused, searchValue]);
 
   const handleSetSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,9 +49,75 @@ function SearchBar() {
     setIsFocused(true);
   }
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleInputBlur = () => {
+    setIsFocused(!!ignoreBlur);
+  }
 
+  const handleMouseEnter = () => {
+    setIgnoreBlur(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIgnoreBlur(false);
+  }
+
+  const closeSuggestions = () => {
+    setIsSuggestionsVisible(false);
+    setIgnoreBlur(false);
+    setIsFocused(false);
+  }
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault();
+
+        setSelectedItemIndex((prevIndex) => {
+          if (prevIndex === options.length - 1) {
+            return 0;
+          } else {
+            return prevIndex + 1;
+          }
+        });
+        break;
+
+      case "ArrowUp":
+        event.preventDefault();
+
+        setSelectedItemIndex((prevIndex) => {
+          if (prevIndex === 0) {
+            return options.length - 1;
+          } else {
+            return prevIndex - 1;
+          }
+        });
+        break;
+
+      case "Enter":
+        event.preventDefault();
+        
+        if (selectedItemIndex !== -1) {
+          const movie = options[selectedItemIndex];
+          router.push(`/movies/${movie.id}`);
+        } else {
+          performSearch();
+        }
+
+        closeSuggestions();
+
+        break;
+
+      case "Escape":
+        closeSuggestions();
+        break;
+        
+      default:
+        break;
+    }
+  }
+
+  const performSearch = () => {
     if (searchValue) {
       router.push({
         pathname: "/search",
@@ -63,12 +134,17 @@ function SearchBar() {
           onChange={handleSetSearchValue}
           onClear={handleClearSearch}
           onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          onKeyDown={(event) => handleKeyDown(event)}
           suggestionsVisible={isSuggestionsVisibible}
         />
         <SearchSuggestionList
           options={options}
           visible={isSuggestionsVisibible}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           isLoading={status === "loading"}
+          selectedItemIndex={selectedItemIndex}
         />
       </div>
     </div>

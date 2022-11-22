@@ -26,12 +26,6 @@ export default function MovieList({ query } : MovieListProps){
 	if (status === "error") return (<div>Error</div>)
 	if (status === "loading") return(<></>)
 
-	if (data.pages[0].total_results == 0) return (
-		<div className="">
-			No results
-		</div>
-	)
-
 	return (
 		<>
 			<div className="mx-4 sm:mx-8 md:mx-16">
