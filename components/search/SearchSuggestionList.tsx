@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Movie } from "../../models/movie";
 import { PaginationResponse } from "../../models/paginationResponse";
-import Spinner from "../utils/spinner";
+import Spinner from "../utils/Spinner";
 import SearchSuggestionItem from "./SearchSuggestionItem";
 
 interface SearchSuggestionListProps {

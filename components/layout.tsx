@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Navbar from "./navigation/navbar";
-import ProgressBar from "./navigation/progress-bar";
+import Navbar from "./navigation/Navbar";
+import ProgressBar from "./navigation/ProgressBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
 	return (
