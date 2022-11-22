@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { getImageUrl } from "../../common/helpers/ImageHelper";
+import { getImageUrl } from "../../common/helpers/imageHelper";
 import { Movie } from "../../models/movie";
 
 interface MovieCardProps {
@@ -22,7 +22,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
           height={750} 
           src={getImageUrl(movie.poster_path)} 
           alt={movie.title}
-          className={`rounded-lg aspect-[500/750] ${imageLoading ? "loading" : ""}`}
+          className={`rounded-lg ${imageLoading ? "loading" : ""}`}
           onLoadingComplete={handleLoadImageComplete}
         />
       </div>

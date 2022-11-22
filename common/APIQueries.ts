@@ -27,6 +27,7 @@ export const APIQueries = {
           query: search
         }
       ),
-    getNextPageParam
+    getNextPageParam,
+    enabled: search.length > 0
   })
 }

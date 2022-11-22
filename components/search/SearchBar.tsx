@@ -1,7 +1,11 @@
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/dist/client/router";
-import React, { ReactEventHandler, useState } from "react";
+import React, { ReactEventHandler, useEffect, useMemo, useState } from "react";
 import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
+import { Movie } from "../../models/movie";
+import { PaginationResponse } from "../../models/paginationResponse";
+import SearchInput from "./SearchInput";
 import SearchSuggestionList from "./SearchSuggestionList";
 
 function SearchBar() {
@@ -9,32 +13,35 @@ function SearchBar() {
   const search = getStringQueryParam("search", router.query);
 
   const [searchValue, setSearchValue] = useState(search);
-  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isSuggestionsVisibible, setIsSuggestionsVisible] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const {data, status} = useQuery<PaginationResponse<Movie>>(APIQueries.searchMovie(searchValue));
+
+  const options = useMemo<Movie[]>(
+    () => data?.results ?? [],
+    [data]
+  );
+
+  useEffect(() => {
+    if (isFocused &&
+      searchValue.length > 0) {
+      setIsSuggestionsVisible(true);
+    } else {
+      setIsSuggestionsVisible(false);
+    }
+  }, [isFocused, searchValue]);
+
+  const handleSetSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-    setShowSuggestions(e.target.value !== "");
+  }
+
+  const handleClearSearch = () => {
+    setSearchValue("");
   }
 
   const handleInputFocus = () => {
-    setShowSuggestions(searchValue !== "");
-  }
-
-  const handleInputBlur = () => {
-    setShowSuggestions(false);
-  }
-
-  // TOOD : arrow up/down : select sugggestion, enter : go to movie page
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown") {
-      // Down      
-    } else if (e.key === "ArrowUp") {
-      // Up
-    }
-  }
-
-  const handleClearValue = () => {
-    setSearchValue("");
+    setIsFocused(true);
   }
 
   const handleSearch = (e: React.FormEvent) => {
@@ -49,40 +56,22 @@ function SearchBar() {
   };
 
   return (
-    <form className="flex flex-wrap justify-center items-center mx-auto py-4"
-      onSubmit={handleSearch}>
+    <div className="flex flex-wrap justify-center items-center mx-auto py-4">
       <div className="relative w-full md:w-1/2 lg:1/3">
-        <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-          <svg aria-hidden="true" className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </div>
-        <input type="search" id="search" name="search" className={`block p-4 pl-10 w-full text-sm text-gray-900 ${showSuggestions ? 'rounded-t-lg' : 'rounded-lg'} border border-gray-200 focus:outline-none`} placeholder="Search"
-          value={searchValue}
-          onChange={handleInputChange}
+        <SearchInput 
+          search={searchValue}
+          onChange={handleSetSearchValue}
+          onClear={handleClearSearch}
           onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          autoComplete="off"
-        ></input>
-        {searchValue && (
-          <button type="button" className="flex absolute inset-y-0 right-24 items-center pl-3"
-            onClick={handleClearValue}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20">
-              <path d="M10 10l5.09-5.09L10 10l5.09 5.09L10 10zm0 0L4.91 4.91 10 10l-5.09 5.09L10 10z" stroke="currentColor" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round"></path>
-            </svg>
-          </button>
-        )}
-        <button type="button" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2"
-          onClick={handleSearch}
-        >
-          Search
-        </button>
-        {showSuggestions && (
-          <SearchSuggestionList query={APIQueries.searchMovie(searchValue)} />
-        )}
+          suggestionsVisible={isSuggestionsVisibible}
+        />
+        <SearchSuggestionList
+          options={options}
+          visible={isSuggestionsVisibible}
+          isLoading={status === "loading"}
+        />
       </div>
-    </form>
+    </div>
   )
 }
 
