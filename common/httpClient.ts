@@ -1,6 +1,6 @@
 import queryString from 'query-string';
 
-export const httpClient = {
+export const HttpClient = {
   get: <Data> (
     url: string,
     params?: queryString.StringifiableRecord,

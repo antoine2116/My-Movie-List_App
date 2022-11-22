@@ -1,12 +1,12 @@
 import { Movie } from "../../models/movie";
 import { PaginationResponse } from "../../models/paginationResponse";
-import { tmdbClient } from "../tmdbClient";
+import { TmdbClient } from "../TmdbClient";
 
 const searchMovies = async (
     page: number,
     query: string
   ) => {
-  const response = await tmdbClient.get<PaginationResponse<Movie[]>>(
+  const response = await TmdbClient.get<PaginationResponse<Movie[]>>(
     '/search/movie',
     {
       page: page,
@@ -18,6 +18,6 @@ const searchMovies = async (
   return response;
 }
 
-export const searchService = {
+export const SearchService = {
   searchMovies
 };

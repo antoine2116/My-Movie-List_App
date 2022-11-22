@@ -1,12 +1,12 @@
-import { httpClient } from './HttpClient';
+import { HttpClient } from './HttpClient';
 import queryString from 'query-string';
 
-export const tmdbClient = {
+export const TmdbClient = {
   get: async <T> (
     endpoint: string,
     params?: queryString.StringifiableRecord,
   ): Promise<T> => {
-    const response = await httpClient.get<T>(
+    const response = await HttpClient.get<T>(
       `${process.env.TMDB_URL}${endpoint}`,
       { ...params, api_key: process.env.TMDB_TOKEN },
     );

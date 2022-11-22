@@ -1,6 +1,6 @@
 import { Movie } from "../models/movie";
 import { PaginationResponse } from "../models/paginationResponse";
-import { httpClient } from "./httpClient";
+import { HttpClient } from "./HttpClient";
 
 export const getNextPageParam = (data : PaginationResponse<Movie>) => {
   return data.total_pages == data.page ? undefined : data.page + 1;
@@ -10,7 +10,7 @@ export const APIQueries = {
   popularMovies: () => ({
     queryKey: ["popularMovies"],
     queryFn: ({ pageParam = 1 }) => 
-      httpClient.get<PaginationResponse<Movie>>(
+      HttpClient.get<PaginationResponse<Movie>>(
         "api/movies/popular", {
           page: pageParam
         }),
@@ -20,7 +20,7 @@ export const APIQueries = {
   searchMovie: (search: string) => ({
     queryKey: ["search", search],
     queryFn: ({ pageParam = 1}) => 
-      httpClient.get<PaginationResponse<Movie>>(
+      HttpClient.get<PaginationResponse<Movie>>(
         "/api/search/movie",
         {
           page: pageParam,
