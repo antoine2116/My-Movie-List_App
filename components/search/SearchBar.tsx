@@ -1,10 +1,10 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/dist/client/router";
-import React, { ReactEventHandler, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
-import { Movie } from "../../models/movie";
-import { PaginationResponse } from "../../models/paginationResponse";
+import { Movie } from "../../models/Movie";
+import { PaginationResponse } from "../../models/PaginationResponse";
 import SearchInput from "./SearchInput";
 import SearchSuggestionList from "./SearchSuggestionList";
 
