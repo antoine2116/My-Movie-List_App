@@ -1,5 +1,5 @@
-import { Movie } from "../../models/movie";
-import { PaginationResponse } from "../../models/paginationResponse";
+import { Movie } from "../../models/Movie";
+import { PaginationResponse } from "../../models/PaginationResponse";
 import { TmdbClient } from "../TmdbClient";
 
 const searchMovies = async (

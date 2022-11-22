@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-import { Movie } from "../../models/movie";
-import { PaginationResponse } from "../../models/paginationResponse";
+import { Movie } from "../../models/Movie";
 import Spinner from "../utils/Spinner";
 import SearchSuggestionItem from "./SearchSuggestionItem";
 
