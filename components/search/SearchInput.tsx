@@ -10,7 +10,7 @@ interface SearchInputProps {
   onKeyDown: React.KeyboardEventHandler<HTMLInputElement>;
 }
 
-function SearchInput({ 
+function SearchInput({
   search, 
   onChange,
   onClear,
@@ -19,7 +19,7 @@ function SearchInput({
   onBlur,
   onKeyDown
 }: SearchInputProps) {
-
+  
   return (
     <>
       <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">

@@ -1,8 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useMemo, useState } from "react";
 import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
+import { getAllResults } from "../../common/helpers/Utils";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import SearchInput from "./SearchInput";
@@ -18,12 +19,16 @@ function SearchBar() {
   const [ignoreBlur, setIgnoreBlur] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
 
-  const {data, status} = useQuery<PaginationResponse<Movie>>(APIQueries.searchMovie(searchValue));
+  const {data, status} = useInfiniteQuery<PaginationResponse<Movie>>(APIQueries.searchMovie(searchValue));
 
   const options = useMemo<Movie[]>(
-    () => data?.results ?? [],
+    () => data ? getAllResults(data) : [],
     [data]
   );
+
+  useEffect(() => {
+    setSearchValue(search);
+  }, [router.query]);
 
   useEffect(() => {
     if (isFocused &&

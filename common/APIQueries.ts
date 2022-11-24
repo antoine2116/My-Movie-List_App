@@ -9,7 +9,7 @@ export const getNextPageParam = (data : PaginationResponse<Movie>) => {
 export const APIQueries = {
   popularMovies: () => ({
     queryKey: ["popularMovies"],
-    queryFn: ({ pageParam = 1 }) => 
+    queryFn: ({ pageParam = 1 }) =>
       HttpClient.get<PaginationResponse<Movie>>(
         "api/movies/popular", {
           page: pageParam
@@ -19,7 +19,7 @@ export const APIQueries = {
 
   searchMovie: (search: string) => ({
     queryKey: ["search", search],
-    queryFn: ({ pageParam = 1}) => 
+    queryFn: ({ pageParam = 1}) =>
       HttpClient.get<PaginationResponse<Movie>>(
         "/api/search/movie",
         {

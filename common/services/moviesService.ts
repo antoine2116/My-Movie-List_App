@@ -13,6 +13,6 @@ const getPopularMovies = async (page:number) => {
   return response;
 }
 
-export const moviesService = {
+export const MoviesService = {
   getPopularMovies
 };
