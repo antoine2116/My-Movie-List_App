@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { getImageUrl } from "../../common/helpers/ImageHelper";
 import { Movie } from "../../models/Movie";
@@ -15,7 +16,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
   }
 
   return (
-    <div className="hover:cursor-pointer">
+    <Link href={`/movie/${movie.id}`}>
       <div className="relative">
         <Image 
           width={500} 
@@ -34,6 +35,6 @@ export default function MovieCard({ movie }: MovieCardProps) {
           {movie.release_date}
         </div>
       </div>
-    </div>
+    </Link>
   )
 }

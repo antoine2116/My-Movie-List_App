@@ -14,7 +14,7 @@ function SearchSuggestionItem({
 }: SearchSuggestionItemProps) {
   return (
     <li>
-      <Link href={`/movies/${movie.id}`}>
+      <Link href={`/movie/${movie.id}`}>
         <div className={`h-14 p-3 flex items-center hover:bg-gray-100 hover:cursor-pointer ${selected ? "bg-gray-100" : ""}`}>
           <Image
             width={30}

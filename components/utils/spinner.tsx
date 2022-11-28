@@ -7,7 +7,7 @@ const override: CSSProperties = {
 
 function Spinner() {
   return (
-    <div className="flex justify-center w-full my-4">
+    <div className="flex justify-center w-full h-full my-4">
       <ClipLoader
         color={"#2590EB"}
         cssOverride={override}

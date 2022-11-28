@@ -104,7 +104,7 @@ function SearchBar() {
         
         if (selectedItemIndex !== -1) {
           const movie = options[selectedItemIndex];
-          router.push(`/movies/${movie.id}`);
+          router.push(`/movie/${movie.id}`);
         } else {
           performSearch();
         }
@@ -132,7 +132,7 @@ function SearchBar() {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center mx-auto py-4">
+    <div className="flex flex-wrap justify-center items-center mx-auto pb-4">
       <div className="relative w-full md:w-1/2 lg:1/3">
         <SearchInput 
           search={searchValue}

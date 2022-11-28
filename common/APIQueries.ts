@@ -1,4 +1,5 @@
 import { Movie } from "../models/Movie";
+import { MovieDetails } from "../models/MovieDetails";
 import { PaginationResponse } from "../models/PaginationResponse";
 import { HttpClient } from "./HttpClient";
 
@@ -29,5 +30,12 @@ export const APIQueries = {
       ),
     getNextPageParam,
     enabled: search.length > 0
+  }),
+
+  movieDetails: (id: string) => ({
+    queryKey: ["movieDetails", id],
+    queryFn: () => HttpClient.get<MovieDetails>(
+      `/api/movies/${id}`
+      )
   })
 }

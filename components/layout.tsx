@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 			<div className="h-screen overflow-hidden">
 				<Navbar />
 				<ProgressBar />
-				<div className="container flex flex-col px-2 mx-auto">
+				<div className="container flex flex-col pt-4 mx-auto">
 					<main>{children}</main>
 				</div>
 			</div>
