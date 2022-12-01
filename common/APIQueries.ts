@@ -36,6 +36,7 @@ export const APIQueries = {
     queryKey: ["movieDetails", id],
     queryFn: () => HttpClient.get<MovieDetails>(
       `/api/movies/${id}`
-      )
+      ),
+    enabled: id !== ""
   })
 }

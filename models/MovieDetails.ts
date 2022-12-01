@@ -1,9 +1,11 @@
+import { Genre } from "./Genre";
+
 export interface MovieDetails {
   adult: boolean;
   backdrop_path: string;
   // belongs_to_collection: BelongsToCollection;
   budget: number;
-  // genres: Genre[];
+  genres: Genre[];
   homepage: string;
   id: number;
   imdb_id: string;
