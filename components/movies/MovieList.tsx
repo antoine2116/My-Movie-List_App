@@ -10,7 +10,7 @@ interface MovieListProps {
 	query: UseInfiniteQueryOptions<PaginationResponse<Movie>>;
 }
 
-export default function MovieList({ query } : MovieListProps){
+export default function MovieList({ query } : MovieListProps) {
 	const {
 		data,
 		fetchNextPage,

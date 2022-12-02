@@ -9,7 +9,6 @@ import { MovieDetails } from "../../models/MovieDetails";
 function Movie() {
   const router = useRouter()
   const id = getStringQueryParam("id", router.query);
-  console.log(id);
   
   const { data, status } = useQuery<MovieDetails>(APIQueries.movieDetails(id));
 

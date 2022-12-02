@@ -4,7 +4,7 @@ import ActiveLink from './ActiveLink'
 
 export default function Navbar() {
 	return (
-		<nav className="py-2 bg-white border border-gray-200 sticky top-0 z-40 flex-none w-full mx-auto">
+		<nav className="py-2 bg-white border border-gray-200 sticky top-0 z-10 flex-none w-full mx-auto">
 			<div className="container flex flex-wrap justify-between items-center mx-auto">
 				<Link href="/" className="flex items-center">
 					<span className="mr-3">

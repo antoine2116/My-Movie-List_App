@@ -16,7 +16,11 @@ const getPopularMovies = async (page: number) => {
 }
 
 const getMovieDetails = async (id: number) => {
-  return await TmdbClient.get<MovieDetails>(`/movie/${id}`);
+  return await TmdbClient.get<MovieDetails>(
+    `/movie/${id}`,
+    {
+      append_to_response: 'videos'
+    });
 }
 
 export const MoviesService = {

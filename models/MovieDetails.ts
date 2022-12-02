@@ -1,4 +1,5 @@
 import { Genre } from "./Genre";
+import { Videos } from "./Videos";
 
 export interface MovieDetails {
   adult: boolean;
@@ -28,7 +29,7 @@ export interface MovieDetails {
   vote_count: number;
   // credits: Credits;
   // images: Images;
-  // videos: Videos;
+  videos: Videos;
   // similar: Similar;
   // recommendations: Recommendations;
 }
