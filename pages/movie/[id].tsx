@@ -5,20 +5,22 @@ import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import MovieProfile from "../../components/movies/MovieProfile";
 import Spinner from "../../components/utils/Spinner";
 import { MovieDetails } from "../../models/MovieDetails";
+import { WatchProvider } from "../../models/WatchProvider";
 
 function Movie() {
   const router = useRouter()
   const id = getStringQueryParam("id", router.query);
   
-  const { data, status } = useQuery<MovieDetails>(APIQueries.movieDetails(id));
+  const movie = useQuery<MovieDetails>(APIQueries.movieDetails(id));
+  const providers = useQuery<WatchProvider[]>(APIQueries.movieWatchProviders(id));
 
   return (
     <>
       {
-        status == "loading" ? 
+        movie.status == "loading" && providers.status == "loading" ?
           <Spinner />
           :
-          <MovieProfile movie={data} />
+          <MovieProfile movie={movie.data} watchProviders={providers.data}/>
       }
     </>
   )

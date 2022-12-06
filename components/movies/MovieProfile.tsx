@@ -8,19 +8,25 @@ import Modal from "../utils/Modal";
 import { useState } from "react";
 import VideoPlayer from "../utils/VideoPlayer";
 import { getMovieTrailer } from "../../common/helpers/VideoHelper";
+import { WatchProvider } from "../../models/WatchProvider";
+import WatchProviders from "./WatchProviders";
 
 interface MovieProfilProps {
   movie?: MovieDetails;
+  watchProviders?: WatchProvider[];
 }
 
-function MovieProfile({ movie }: MovieProfilProps) {
+function MovieProfile({
+  movie,
+  watchProviders
+}: MovieProfilProps) {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const handlePlayButtonClick = () => {
     setIsModalOpened(true);
   }
-  
+
   const handleCloseModal = () => {
     setIsModalOpened(false);
   }
@@ -67,30 +73,36 @@ function MovieProfile({ movie }: MovieProfilProps) {
                       <div className="text-lg text-white font-semibold mb-2">
                         {convertToHours(movie.runtime)}
                       </div>
-                      <div className="flex flex-row space-x-2 mb-3">
-                        {movie.genres.map((genre) => (
-                          <div key={genre.id} className="bg-white rounded-2xl border border-gray-200 text-sm text-black font-semibold shadow-xl px-3 py-0.5">
-                            {genre.name}
+                      <div className="flex flex-row justify-between space-x-2 mb-3">
+                        <div>
+                          <div className="flex flex-row space-x-2 mb-3">
+                            {movie.genres.map((genre) => (
+                              <div key={genre.id} className="bg-white rounded-2xl border border-gray-200 text-sm text-black font-semibold shadow-xl px-3 py-0.5">
+                                {genre.name}
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
-                      <div className="flex flex-row space-x-2 mb-2">
-                        <div className="bg-white border border-gray-200 rounded-full shadow-xl h-10 w-10 flex justify-center items-center">
-                          <div className="text-center text-black font-semibold">
-                            52
-                            <sup className="font-bold">%</sup>
+                          <div className="flex flex-row space-x-2 mb-2">
+                            <div className="bg-white border border-gray-200 rounded-full shadow-xl h-10 w-10 flex justify-center items-center">
+                              <div className="text-center text-black font-semibold">
+                                52
+                                <sup className="font-bold">%</sup>
+                              </div>
+                            </div>
+                            <div className="flex items-center">
+                              <div className="text-lg text-white font-semibold">
+                                Users rating
+                              </div>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex items-center">
-                          <div className="text-lg text-white font-semibold">
-                            Users rating
-                          </div>
-                        </div>
+
+                        <WatchProviders providers={watchProviders} />
                       </div>
                       <div className="text-lg text-white font-semibold">
                         Overview
                       </div>
-                      <div className="text-white">
+                      <div className="text-white text-justify">
                         {movie.overview}
                       </div>
                     </div>
@@ -98,6 +110,9 @@ function MovieProfile({ movie }: MovieProfilProps) {
                 </div>
               </div>
             </div>
+            <div className="mt-3">
+            </div>
+
             <Modal
               isOpened={isModalOpened}
               close={handleCloseModal}

@@ -1,6 +1,7 @@
 import { Movie } from "../models/Movie";
 import { MovieDetails } from "../models/MovieDetails";
 import { PaginationResponse } from "../models/PaginationResponse";
+import { WatchProvider } from "../models/WatchProvider";
 import { HttpClient } from "./HttpClient";
 
 export const getNextPageParam = (data : PaginationResponse<Movie>) => {
@@ -36,6 +37,14 @@ export const APIQueries = {
     queryKey: ["movieDetails", id],
     queryFn: () => HttpClient.get<MovieDetails>(
       `/api/movies/${id}`
+      ),
+    enabled: id !== ""
+  }),
+
+  movieWatchProviders: (id: string) => ({
+    queryKey: ["movieWatchProviders", id],
+    queryFn: () => HttpClient.get<WatchProvider[]>(
+      `/api/movies/${id}/watch/providers`
       ),
     enabled: id !== ""
   })

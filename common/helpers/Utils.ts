@@ -1,6 +1,8 @@
 import { InfiniteData } from "@tanstack/react-query"
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse"
+import { WatchProvider } from "../../models/WatchProvider";
+import { WatchProvidingCountries } from "../../models/WatchProvidingCountries";
 
 export function getAllResults<T> (data : InfiniteData<PaginationResponse<T>>): T[] {
   return data?.pages?.flatMap((page) => page.results) ?? [];
@@ -14,6 +16,10 @@ export function filterMovies(data: PaginationResponse<Movie>): PaginationRespons
       movie.popularity > 10
     )
   }
+}
+
+export function filterWatchProviders(data: WatchProvidingCountries): WatchProvider[] {
+  return "FR" in data.results ? data.results.FR.flatrate : [];
 }
 
 export function convertToHours(minutes: number): string {
