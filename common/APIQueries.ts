@@ -1,3 +1,4 @@
+import { Cast } from "../models/Cast";
 import { Movie } from "../models/Movie";
 import { MovieDetails } from "../models/MovieDetails";
 import { PaginationResponse } from "../models/PaginationResponse";
@@ -41,11 +42,17 @@ export const APIQueries = {
     enabled: id !== ""
   }),
 
-  movieWatchProviders: (id: string) => ({
+  movieWatchProviders: (id: number) => ({
     queryKey: ["movieWatchProviders", id],
     queryFn: () => HttpClient.get<WatchProvider[]>(
-      `/api/movies/${id}/watch/providers`
-      ),
-    enabled: id !== ""
+      `/api/movies/${id}/providers`
+      )
+  }),
+
+  movieCasting: (id: number) => ({
+    queryKey: ["movieCasting", id],
+    queryFn: () => HttpClient.get<Cast[]>(
+      `/api/movies/${id}/casting`
+      )
   })
 }

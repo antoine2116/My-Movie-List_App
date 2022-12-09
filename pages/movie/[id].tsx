@@ -12,19 +12,14 @@ function Movie() {
   const id = getStringQueryParam("id", router.query);
   
   const movie = useQuery<MovieDetails>(APIQueries.movieDetails(id));
-  const providers = useQuery<WatchProvider[]>(APIQueries.movieWatchProviders(id));
+
+  if (movie.isLoading) {
+    return <Spinner />
+  }
 
   return (
-    <>
-      {
-        movie.status == "loading" && providers.status == "loading" ?
-          <Spinner />
-          :
-          <MovieProfile movie={movie.data} watchProviders={providers.data}/>
-      }
-    </>
+    <MovieProfile movie={movie.data} />
   )
 }
 
 export default Movie;
-

@@ -1,8 +1,9 @@
 import { Movie } from "../../models/Movie";
+import { MovieCredits } from "../../models/MovieCredits";
 import { MovieDetails } from "../../models/MovieDetails";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import { WatchProvidingCountries } from "../../models/WatchProvidingCountries";
-import { filterMovies, filterWatchProviders } from "../helpers/Utils";
+import { filterCast, filterMovies, filterWatchProviders } from "../helpers/Utils";
 import { TmdbClient } from "../TmdbClient";
 
 const getPopularMovies = async (page: number) => {
@@ -32,8 +33,17 @@ const getWatchProviders = async (id: number) => {
   return filterWatchProviders(response);
 }
 
+const getMovieCasting = async (id: number) => {
+  const response = await TmdbClient.get<MovieCredits>(
+    `/movie/${id}/credits`
+  );
+
+  return filterCast(response.cast);
+}
+
 export const MoviesService = {
   getPopularMovies,
   getMovieDetails,
-  getWatchProviders
+  getWatchProviders,
+  getMovieCasting
 };
