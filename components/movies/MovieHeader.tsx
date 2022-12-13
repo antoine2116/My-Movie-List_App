@@ -74,7 +74,7 @@ function MovieHeader({
                   <div>
                     <div className="flex flex-row space-x-2 mb-3">
                       {movie.genres.map((genre) => (
-                        <div key={genre.id} className="bg-white rounded-2xl border border-gray-200 text-sm text-black font-semibold shadow-xl px-3 py-0.5">
+                        <div key={genre.id} className="inline-flex justify-center px-2.5 py-0.5 bg-white rounded-xl border border-gray-200 text-sm text-black font-semibold shadow-xl">
                           {genre.name}
                         </div>
                       ))}

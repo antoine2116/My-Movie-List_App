@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<div className="h-screen overflow-hidden">
+			<div>
 				<Navbar />
 				<ProgressBar />
 				<div className="container flex flex-col pt-4 mx-auto">
