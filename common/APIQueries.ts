@@ -54,5 +54,15 @@ export const APIQueries = {
     queryFn: () => HttpClient.get<Cast[]>(
       `/api/movies/${id}/casting`
       )
+  }),
+
+  movieRecommendations: (id: number) => ({
+    queryKey: ["movieRecommendations", id],
+    queryFn: ({ pageParam = 1 }) =>
+      HttpClient.get<PaginationResponse<Movie>>(
+        `/api/movies/${id}/recommendations`, {
+          page: pageParam
+        }),
+    getNextPageParam
   })
 }
