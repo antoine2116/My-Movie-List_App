@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getImageUrl } from '../../common/helpers/ImageHelper';
+import { getImageUrl } from '../../common/helpers/imageHelper';
 
 interface CarrouselItemProps {
   image_path: string;
@@ -13,7 +13,7 @@ function CarrouselItem({
   subtitle
 }: CarrouselItemProps) {
   return (
-    <div className="min-w-[8rem] min-h-[12rem]">
+    <div className="min-w-[8rem] min-h-[12rem] snap-start">
       <Image
         src={getImageUrl(image_path)}
         width={500}

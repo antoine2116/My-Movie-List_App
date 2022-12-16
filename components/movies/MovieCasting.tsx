@@ -2,8 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { APIQueries } from "../../common/APIQueries";
 import { Cast } from "../../models/Cast";
 import Carrousel from "../utils/Carrousel";
-import Image from "next/image";
-import { getImageUrl } from "../../common/helpers/ImageHelper";
 import CarrouselItem from "../utils/CarrouselItem";
 
 interface MovieCastingProps {

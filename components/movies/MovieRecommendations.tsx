@@ -24,10 +24,10 @@ function MovieRecommendations({
         {
           data?.results.map((movie: Movie) => (
             <Link
+              key={movie.id}
               href={`/movie/${movie.id}`} 
             >
               <CarrouselItem
-                key={movie.id}
                 image_path={movie.poster_path}
                 title={movie.title}
               />
