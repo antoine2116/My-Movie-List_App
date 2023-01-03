@@ -14,8 +14,7 @@ function Carrousel({
 
   const scroll = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [srollEnd, setScrollEnd] = useState(false);
-
+  const [scrollEnd, setScrollEnd] = useState(false);
   const sideScroll = (
     step: number
   ) => {
@@ -41,9 +40,9 @@ function Carrousel({
 
   useEffect(() => {
     if (scroll.current !== null) {
-      setScrollEnd(scrollPosition + scroll.current.offsetWidth >= scroll.current.scrollWidth);
+      setScrollEnd(scrollPosition + scroll.current.offsetWidth > scroll.current.scrollWidth);
     }
-  }, [scrollPosition]);
+  }, [scrollPosition, scroll]);
 
   return (
     <div className="relative">
@@ -66,7 +65,7 @@ function Carrousel({
         </div>
       </div>
 
-      {!srollEnd && (
+      {!scrollEnd && (
         <div
           className="absolute top-1/4 right-[-1.25rem] flex items-center justify-center rounded-full shadow-lg bg-white border border-gray-300 w-10 h-10 hover:bg-gray-100 hover:cursor-pointer"
           onClick={scrollRight}
