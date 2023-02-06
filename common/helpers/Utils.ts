@@ -32,3 +32,7 @@ export function convertToHours(minutes: number): string {
   const mins = minutes % 60;
   return `${hours}h ${mins}m`;
 }
+
+export function convertVoteAverage(voteAverage: number): string {
+  return (voteAverage * 10).toFixed(0);
+}

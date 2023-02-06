@@ -1,7 +1,7 @@
 import MovieCard from "./MovieCard";
 import { useInfiniteQuery, UseInfiniteQueryOptions } from "@tanstack/react-query";
 import React from "react";
-import Spinner from "../utils/Spinner";
+import Spinner from "../utils/spinner";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import { getAllResults } from "../../common/helpers/Utils";

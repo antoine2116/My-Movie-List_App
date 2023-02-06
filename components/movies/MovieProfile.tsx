@@ -11,7 +11,6 @@ interface MovieProfilProps {
 function MovieProfile({
   movie
 }: MovieProfilProps) {
-
   return (
     <>
       {

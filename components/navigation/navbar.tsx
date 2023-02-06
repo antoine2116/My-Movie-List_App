@@ -18,9 +18,6 @@ export default function Navbar() {
 							<ActiveLink href="/">Home</ActiveLink>
 						</li>
 						<li>
-							<ActiveLink href="/artists">Artists</ActiveLink>
-						</li>
-						<li>
 							<ActiveLink href="/watch-list">Watch list</ActiveLink>
 						</li>
 					</ul>

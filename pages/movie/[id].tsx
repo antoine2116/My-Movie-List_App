@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import MovieProfile from "../../components/movies/MovieProfile";
-import Spinner from "../../components/utils/Spinner";
+import Spinner from "../../components/utils/spinner";
 import { MovieDetails } from "../../models/MovieDetails";
 import { WatchProvider } from "../../models/WatchProvider";
 

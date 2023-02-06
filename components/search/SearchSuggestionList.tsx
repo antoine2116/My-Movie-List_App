@@ -1,5 +1,5 @@
 import { Movie } from "../../models/Movie";
-import Spinner from "../utils/Spinner";
+import Spinner from "../utils/spinner";
 import SearchSuggestionItem from "./SearchSuggestionItem";
 
 interface SearchSuggestionListProps {

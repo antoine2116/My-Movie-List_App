@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { getBackdropUrl, getImageUrl } from "../../common/helpers/imageHelper";
-import { convertToHours } from "../../common/helpers/Utils";
+import { convertToHours, convertVoteAverage } from "../../common/helpers/Utils";
 import { getMovieTrailer } from "../../common/helpers/VideoHelper";
 import { MovieDetails } from "../../models/MovieDetails";
 import providers from "../../pages/api/movies/[id]/providers";
@@ -82,7 +82,7 @@ function MovieHeader({
                     <div className="flex flex-row space-x-2 mb-2">
                       <div className="bg-white border border-gray-200 rounded-full shadow-xl h-10 w-10 flex justify-center items-center">
                         <div className="text-center text-black font-semibold">
-                          52
+                          {convertVoteAverage(movie.vote_average)}
                           <sup className="font-bold">%</sup>
                         </div>
                       </div>
