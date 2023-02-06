@@ -18,6 +18,7 @@ function MovieProfile({
         movie && (
           <div>
             <MovieHeader movie={movie} />
+
             <div className="grid grid-cols-5 gap-x-8">
               <div className="col-span-4 col-start-1">
                 <MovieCasting movieId={movie.id} />

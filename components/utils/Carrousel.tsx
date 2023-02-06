@@ -15,7 +15,8 @@ function Carrousel({
   const scroll = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollEnd, setScrollEnd] = useState(false);
-  const sideScroll = (
+
+  const scrollTo = (
     step: number
   ) => {
     if (scroll.current !== null) {
@@ -25,11 +26,11 @@ function Carrousel({
   };
 
   const scrollLeft = () => {
-    sideScroll(-1200);
+    scrollTo(-1200);
   };
 
   const scrollRight = () => {
-    sideScroll(1200);
+    scrollTo(1200);
   };
 
   const handleScroll = () => {
@@ -39,13 +40,15 @@ function Carrousel({
   };
 
   useEffect(() => {
-    if (scroll.current !== null) {
-      setScrollEnd(scrollPosition + scroll.current.offsetWidth > scroll.current.scrollWidth);
+    if (scroll.current !== null && scrollPosition != 0) {
+      setScrollEnd(scrollPosition + scroll.current.offsetWidth >= scroll.current.scrollWidth);
     }
   }, [scrollPosition, scroll]);
 
   return (
     <div className="relative">
+
+      {/* Left scroll button */}
       {scrollPosition !== 0 && (
         <div
           className="absolute top-1/4 left-[-1.25rem] flex items-center justify-center rounded-full shadow-lg bg-white border border-gray-300 w-10 h-10 hover:bg-gray-100 hover:cursor-pointer"
@@ -54,6 +57,8 @@ function Carrousel({
           <IoChevronBackOutline className="text-gray-600 text-xl" />
         </div>
       )}
+
+      {/* Scrolling element */}
       <div 
         className="overflow-x-auto overflow-y-visible scrollbar-none scroll-smooth snap-x" 
         ref={scroll}
@@ -65,6 +70,7 @@ function Carrousel({
         </div>
       </div>
 
+      {/* Right scroll button */}
       {!scrollEnd && (
         <div
           className="absolute top-1/4 right-[-1.25rem] flex items-center justify-center rounded-full shadow-lg bg-white border border-gray-300 w-10 h-10 hover:bg-gray-100 hover:cursor-pointer"
