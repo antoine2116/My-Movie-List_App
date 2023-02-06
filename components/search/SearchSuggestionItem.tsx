@@ -1,7 +1,7 @@
 import { Movie } from "../../models/Movie";
 import Image from "next/image";
 import Link from "next/link";
-import { getImageUrl } from "../../common/helpers/ImageHelper";
+import { getImageUrl } from "../../common/helpers/imageHelper";
 
 interface SearchSuggestionItemProps {
   movie: Movie;
