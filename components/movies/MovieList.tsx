@@ -32,8 +32,8 @@ export default function MovieList({ query } : MovieListProps) {
     <p>Error !</p>
   ) : (
 		<>
-			<div className="mx-4 sm:mx-8 md:mx-16">
-				<div className="h-auto max-h-full overflow-y-auto pr-3" style={{ height: 'calc(100vh - 70px - 86px)' }} onScroll={handleScroll}>
+			<div>
+				<div className="h-auto max-h-full overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-thin" style={{ height: 'calc(100vh - 70px - 86px)' }} onScroll={handleScroll}>
 					<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 						{getAllResults(data).map((movie: Movie) => (
 							<MovieCard

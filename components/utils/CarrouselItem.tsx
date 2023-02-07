@@ -13,7 +13,7 @@ function CarrouselItem({
   subtitle
 }: CarrouselItemProps) {
   return (
-    <div className="min-w-[8rem] min-h-[12rem] snap-start">
+    <div className="min-w-[8rem] w-[8rem] snap-start">
       <Image
         src={getImageUrl(image_path)}
         width={500}

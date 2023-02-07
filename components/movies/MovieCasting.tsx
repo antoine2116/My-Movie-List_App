@@ -3,6 +3,7 @@ import { APIQueries } from "../../common/APIQueries";
 import { Cast } from "../../models/Cast";
 import Carrousel from "../utils/Carrousel";
 import CarrouselItem from "../utils/CarrouselItem";
+import SectionTitle from "../utils/Titles";
 
 interface MovieCastingProps {
   movieId: number;
@@ -15,10 +16,9 @@ function MovieCasting({
   const { data, isLoading } = useQuery<Cast[]>(APIQueries.movieCasting(movieId));
 
   return (
-    <div className="mb-3">
-      <div className="text-2xl font-semibold text-black mb-2">
-        Casting
-      </div>
+    <>
+      <SectionTitle title="Casting" />
+      
       <Carrousel loading={isLoading}>
         {
           data?.map((cast: Cast) => (
@@ -31,7 +31,7 @@ function MovieCasting({
           ))
         }
       </Carrousel>
-    </div>
+    </>
   )
 }
 

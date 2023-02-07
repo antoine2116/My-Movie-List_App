@@ -5,6 +5,7 @@ import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import Carrousel from "../utils/Carrousel";
 import CarrouselItem from "../utils/CarrouselItem";
+import SectionTitle from "../utils/Titles";
 
 interface MovieRecommendationsProps {
   movieId: number;
@@ -16,16 +17,15 @@ function MovieRecommendations({
   const { data, isLoading } = useQuery<PaginationResponse<Movie>>(APIQueries.movieRecommendations(movieId));
 
   return (
-    <div className="mb-3">
-      <div className="text-2xl font-semibold text-black mb-2">
-        Recommendations
-      </div>
+    <>
+      <SectionTitle title="Recommendations" />
+      
       <Carrousel loading={isLoading}>
         {
           data?.results.map((movie: Movie) => (
             <Link
               key={movie.id}
-              href={`/movie/${movie.id}`} 
+              href={`/movie/${movie.id}`}
             >
               <CarrouselItem
                 image_path={movie.poster_path}
@@ -35,7 +35,7 @@ function MovieRecommendations({
           ))
         }
       </Carrousel>
-    </div>
+    </>
   )
 }
 

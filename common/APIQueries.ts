@@ -1,4 +1,5 @@
 import { Cast } from "../models/Cast";
+import { Genre, Genres } from "../models/Genre";
 import { Movie } from "../models/Movie";
 import { MovieDetails } from "../models/MovieDetails";
 import { PaginationResponse } from "../models/PaginationResponse";
@@ -64,5 +65,20 @@ export const APIQueries = {
           page: pageParam
         }),
     getNextPageParam
-  })
+  }),
+
+  genres: () => ({
+    queryKey: ["genres", "all"],
+    queryFn: () => HttpClient.get<Genres>(`/api/genre/movie/list`)
+  }),  
+
+  moviesByGenre: (id: number) => ({
+    queryKey: ["moviesByGenre", id],
+    queryFn: ({ pageParam = 1 }) =>
+      HttpClient.get<PaginationResponse<Movie>>(
+        `/api/genre/${id}`, {
+          page: pageParam
+        }),
+    getNextPageParam
+  }),
 }

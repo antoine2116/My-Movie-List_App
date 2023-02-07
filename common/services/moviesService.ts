@@ -49,10 +49,23 @@ const getRecommendations = async (id: number) => {
   return filterMovies(response);
 }
 
+const getMoviesByGenre = async (id: number, page: number) => {
+  const response = await TmdbClient.get<PaginationResponse<Movie>>(
+    `/discover/movie`,
+    {
+      with_genres: id,
+      page: page
+    }
+  );
+
+  return filterMovies(response);
+}
+
 export const MoviesService = {
   getPopularMovies,
   getMovieDetails,
   getWatchProviders,
   getMovieCasting,
-  getRecommendations
+  getRecommendations,
+  getMoviesByGenre
 };
