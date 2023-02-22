@@ -113,8 +113,7 @@ function MovieHeader({
                     
       <Modal  
         isOpened={isModalOpened}
-        close={handleCloseModal}
-        bgColor="black">
+        close={handleCloseModal}>
           {isModalOpened && ( 
             <VideoPlayer video={getMovieTrailer(movie)} />
           )}

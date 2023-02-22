@@ -1,7 +1,8 @@
 import Head from "next/head";
-import Navbar from "./navigation/navbar";
+import Navbar from "./navigation/Navbar";
 import ProgressBar from "./navigation/ProgressBar";
 import Sidebar from "./navigation/Sidebar";
+import AuthModal from "./authentication/AuthModal";
 
 function Layout({ children }: { children: React.ReactNode }) {
 	return (

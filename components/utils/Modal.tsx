@@ -3,15 +3,13 @@ import { IoCloseOutline } from "react-icons/io5";
 interface ModalProps {
   children: React.ReactNode;
   isOpened: boolean;
-  bgColor?: string;
   close: () => void;
 }
 
 function Modal({ 
   children, 
   isOpened,
-  close,
-  bgColor = "black"
+  close
 }: ModalProps) {
 
   const handleOutsideClick = () => {
@@ -29,14 +27,8 @@ function Modal({
         className={`fixed inset-0 flex items-center justify-center ${isOpened ? "m-0": "mt-24"} transition-all ease-in-out duration-500`}
         onClick={handleOutsideClick}>
         <div 
-          className={`p-4 relative bg-${bgColor} rounded-lg shadow-2xl`}
+          className="shadow-2xl bg-white rounded-lg"
           onClick={handleInsideClick}>
-          <div className="absolute right-0 top-0 p-1">
-            <button
-              onClick={close}>
-              <IoCloseOutline className="text-3xl text-white" />
-            </button>
-          </div>
           <div>
             {children}
           </div>

@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from '../components/Layout';
 import { Inter } from '@next/font/google'
+import AuthModal from '../components/authentication/AuthModal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <Component {...pageProps} />
         </Layout>
+        <AuthModal />
       </main>
     </QueryClientProvider>
   )
