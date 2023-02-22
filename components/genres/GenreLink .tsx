@@ -11,10 +11,10 @@ function GenreLink({
   active
 } : GenreLinkProps) {
   return (
-    <li className="my-1" key={genre.id}>
+    <li className="mt-4" key={genre.id}>
       <Link
         href={`/genre/${genre.id}`}
-        className={`block py-1.5 pl-3 cursor-pointer rounded-md ${active ? "text-white bg-blue-600 font-semibold" : "text-gray-900 bg-white"} hover:bg-blue-600 hover:text-white hover:font-semibold`}>
+        className={`block pl-3 cursor-pointer text-gray-900 hover:text-orange-600`}>
         {genre.name}
       </Link>
     </li>

@@ -10,20 +10,7 @@ function Genre() {
   const id = Number(getStringQueryParam("id", router.query));
 
   return (
-    <>
-      <div className="grid grid-cols-6 gap-4">
-
-        <div className="col-span-1">
-          <GenreList activeId={id} />
-        </div>
-
-        <div className="col-span-5">
-          <SearchBar />
-          <MovieList query={APIQueries.moviesByGenre(id)} />
-        </div>
-
-      </div>
-    </>
+    <MovieList query={APIQueries.moviesByGenre(id)} />
   )
 }
 

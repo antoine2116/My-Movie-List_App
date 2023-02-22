@@ -1,8 +1,9 @@
 import Head from "next/head";
-import Navbar from "./navigation/Navbar";
+import Navbar from "./navigation/navbar";
 import ProgressBar from "./navigation/ProgressBar";
+import Sidebar from "./navigation/Sidebar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<Head>
@@ -11,13 +12,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<div>
+			<div className="antialiased text-black bg-white">
 				<Navbar />
-				<ProgressBar />
-				<div className="container flex flex-col pt-4 mx-auto">
-					<main>{children}</main>
+				<Sidebar />
+				<div className="ml-64 p-4">
+					<ProgressBar />
+					<div className="container mx-auto">
+						<main>{children}</main>
+					</div>
 				</div>
 			</div>
 		</>
 	)
 }
+
+export default Layout;

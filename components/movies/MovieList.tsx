@@ -1,30 +1,31 @@
 import MovieCard from "./MovieCard";
 import { useInfiniteQuery, UseInfiniteQueryOptions } from "@tanstack/react-query";
-import React from "react";
+import React, { useEffect } from "react";
 import Spinner from "../utils/spinner";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import { getAllResults } from "../../common/helpers/Utils";
+import { useInView } from "react-intersection-observer";
 
 interface MovieListProps {
 	query: UseInfiniteQueryOptions<PaginationResponse<Movie>>;
 }
 
 export default function MovieList({ query } : MovieListProps) {
+	const  { ref, inView } = useInView();
+	
 	const {
 		data,
 		fetchNextPage,
-		isFetchingNextPage,
 		status
 	} = useInfiniteQuery<PaginationResponse<Movie>>(query);
 
-	const handleScroll = (event: React.UIEvent<HTMLElement>) => {
-		if (!isFetchingNextPage &&
-				 event.currentTarget.scrollTop + event.currentTarget.clientHeight >= (event.currentTarget.scrollHeight)
-				) {
+	useEffect(() => {
+		if (inView) {
 			fetchNextPage();
 		}
-	}
+	}, [inView, fetchNextPage])
+
 
 	return status === "loading" ? (
     <Spinner />
@@ -33,20 +34,17 @@ export default function MovieList({ query } : MovieListProps) {
   ) : (
 		<>
 			<div>
-				<div className="h-auto max-h-full overflow-y-auto pr-4 scrollbar-thumb-gray-300 scrollbar-thumb-rounded scrollbar-thin" style={{ height: 'calc(100vh - 70px - 86px)' }} onScroll={handleScroll}>
-					<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-						{getAllResults(data).map((movie: Movie) => (
-							<MovieCard
-								key={movie.id}
-								movie={movie} />
-						))}
-					</div>
-					{
-						isFetchingNextPage && ( 
-							<Spinner />  
-						)
-					}
+				<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+					{getAllResults(data).map((movie: Movie) => (
+						<MovieCard
+							key={movie.id}
+							movie={movie} />
+					))}
 				</div>
+				<div ref={ref}>
+						<Spinner />  
+				</div>
+				
 			</div>
 		</>
 	)

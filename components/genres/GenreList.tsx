@@ -17,12 +17,12 @@ export default function GenreList({
   const { data } = useQuery<Genres>(APIQueries.genres());
 
   return (
-    <>
-      <div className="flex items-center">
-        {/* TODO : icon should be passed as a prop */}
-        <IoAlbumsOutline className="text-2xl mr-3 mb-1" />
-        <SectionTitle title="Genres" />
-      </div>
+    <li>
+      <h5 className="flex items-center text-xl mb-2">
+        <div className="font-semibold text-black">
+          Genres
+        </div>
+      </h5>
       <ul>
         {
           data?.genres.map((genre: Genre) => (
@@ -34,6 +34,6 @@ export default function GenreList({
           ))
         }
       </ul>
-    </>
+    </li>
   )
 } 

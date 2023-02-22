@@ -9,7 +9,7 @@ function Spinner() {
   return (
     <div className="flex justify-center w-full h-full my-4">
       <ClipLoader
-        color={"#2590EB"}
+        color={"#EA580C"}
         cssOverride={override}
         loading={true}
         size={50}
