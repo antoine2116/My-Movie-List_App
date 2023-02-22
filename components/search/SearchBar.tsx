@@ -28,7 +28,7 @@ function SearchBar() {
 
   useEffect(() => {
     setSearchValue(search);
-  }, [router.query]);
+  }, [router.query, search]);
 
   useEffect(() => {
     if (isFocused &&

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
-import Spinner from "./spinner";
+import Spinner from "./Spinner";
 
 interface CarrouselProps {
   loading: boolean;

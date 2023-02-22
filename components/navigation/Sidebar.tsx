@@ -1,6 +1,5 @@
-import { IoAlbumsOutline, IoFlame, IoFlameOutline } from "react-icons/io5";
+import { IoFlame } from "react-icons/io5";
 import GenreList from "../genres/GenreList";
-import SidebarItem from "./SidebarLink";
 import SidebarLink from "./SidebarLink";
 
 function Sidebar() {

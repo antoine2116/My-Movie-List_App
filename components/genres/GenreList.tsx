@@ -1,9 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { APIQueries } from "../../common/APIQueries";
 import { Genre, Genres } from "../../models/Genre"
-import SectionTitle from "../utils/Titles";
-import { IoAlbumsOutline } from "react-icons/io5";
-import Link from "next/link";
 import GenreLink from "./GenreLink ";
 
 interface GenreListProps {

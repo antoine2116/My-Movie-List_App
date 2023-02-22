@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { IoPlayCircleSharp } from "react-icons/io5";
-import { getBackdropUrl, getImageUrl } from "../../common/helpers/imageHelper";
+import { getBackdropUrl, getImageUrl } from "../../common/helpers/ImageHelper";
 import { convertToHours, convertVoteAverage } from "../../common/helpers/Utils";
 import { getMovieTrailer } from "../../common/helpers/VideoHelper";
 import { MovieDetails } from "../../models/MovieDetails";
