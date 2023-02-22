@@ -12,4 +12,8 @@ module.exports = {
   plugins: [
     require('tailwind-scrollbar')({ nocompatible: true })
   ],
+  safelist: [
+    "bg-black",
+    "bg-white"
+  ]
 }

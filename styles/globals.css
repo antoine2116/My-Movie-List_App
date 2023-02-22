@@ -25,6 +25,10 @@ html {
   color: transparent;
 }
 
+body:has(.prevent-scroll) {
+  overflow-y: hidden;
+}
+
 /* Page Progress Bar */
 #nprogress .spinner {
   display: none !important;

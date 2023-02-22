@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getImageUrl } from '../../common/helpers/imageHelper';
+import { getImageUrl } from '../../common/helpers/ImageHelper';
 
 interface CarrouselItemProps {
   image_path: string;

@@ -3,9 +3,8 @@ import { useRouter } from "next/router";
 import { APIQueries } from "../../common/APIQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import MovieProfile from "../../components/movies/MovieProfile";
-import Spinner from "../../components/utils/spinner";
+import Spinner from "../../components/utils/Spinner";
 import { MovieDetails } from "../../models/MovieDetails";
-import { WatchProvider } from "../../models/WatchProvider";
 
 function Movie() {
   const router = useRouter()

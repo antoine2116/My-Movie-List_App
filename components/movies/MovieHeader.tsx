@@ -5,13 +5,13 @@ import { getBackdropUrl, getImageUrl } from "../../common/helpers/ImageHelper";
 import { convertToHours, convertVoteAverage } from "../../common/helpers/Utils";
 import { getMovieTrailer } from "../../common/helpers/VideoHelper";
 import { MovieDetails } from "../../models/MovieDetails";
-import providers from "../../pages/api/movies/[id]/providers";
 import Modal from "../utils/Modal";
 import VideoPlayer from "../utils/VideoPlayer";
 import MovieProviders from "./MovieProviders";
 import { useQuery } from "@tanstack/react-query";
 import { APIQueries } from "../../common/APIQueries";
 import { WatchProvider } from "../../models/WatchProvider";
+import { unmountComponentAtNode } from "react-dom";
 
 interface MovieHeaderProps {
   movie: MovieDetails;
@@ -34,7 +34,7 @@ function MovieHeader({
   return (
     <>
       <div
-        className="relative w-full h-[28rem] no-repeat bg-cover bg-center"
+        className="relative w-full h-[28rem] no-repeat bg-cover bg-center rounded-lg overflow-hidden"
         style={{ backgroundImage: `url(${getBackdropUrl(movie.backdrop_path)})` }}>
         <div className="h-full w-full bg-black/50">
           <div className="pl-4 pr-64 py-12 h-full">
@@ -110,12 +110,14 @@ function MovieHeader({
       </div>
       <div className="mt-3">
       </div>
-
-      <Modal
+                    
+      <Modal  
         isOpened={isModalOpened}
         close={handleCloseModal}
-      >
-        <VideoPlayer video={getMovieTrailer(movie)} />
+        bgColor="black">
+          {isModalOpened && ( 
+            <VideoPlayer video={getMovieTrailer(movie)} />
+          )}
       </Modal>
     </>
   )
