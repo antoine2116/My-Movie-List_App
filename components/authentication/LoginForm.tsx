@@ -12,6 +12,7 @@ import OAuthButton from "./OAuthButton";
 import { setUserToken } from "../../common/auth/UserToken";
 import { useAuth } from "../AuthContext";
 import Button from "../utils/Button/Button";
+import { toast } from "react-toastify";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -34,6 +35,7 @@ function LoginForm() {
 
       const response = await APIQueries.login(email, password);
       login(response.token);
+      toast.success("Welcome back!");
       
       closeModal();
     } catch (error) {

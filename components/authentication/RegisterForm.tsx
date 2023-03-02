@@ -11,6 +11,7 @@ import ErrorMessage from "./ErrorMessage";
 import OAuthButton from "./OAuthButton";
 import Button from "../utils/Button/Button";
 import { useAuth } from "../AuthContext";
+import { toast } from "react-toastify";
 
 interface RegisterFormProps {
 }
@@ -39,6 +40,7 @@ function RegisterForm({
 
       const response = await APIQueries.register(email, password, passwordConfirmation);
       login(response.token);
+      toast.success("Welcome to Apou's Films!");
 
       closeModal();
     } catch (error) {

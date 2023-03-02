@@ -28,6 +28,7 @@
     "react-outside-click-handler": "^1.3.0",
     "react-player": "^2.11.0",
     "react-spinners": "^0.13.6",
+    "react-toastify": "^9.1.1",
     "sharp": "^0.31.2",
     "swr": "^1.3.0",
     "tailwind-scrollbar": "^2.0.1",

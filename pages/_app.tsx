@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import { Inter } from '@next/font/google'
 import { ManagedUIContext } from '../components/UIContext';
 import { AuthProvider } from '../components/AuthContext';
+import { ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] })
 

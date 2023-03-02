@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { IoPersonCircle } from "react-icons/io5";
-import { removeUserToken } from "../../common/auth/UserToken";
 import { useAuth } from "../AuthContext";
 import OutsideClickHandler from "react-outside-click-handler";
+import { toast } from "react-toastify";
 
 function NavbarUserButton() {
   const [displayDropdown, setDisplayDropdown] = useState(false);
@@ -10,6 +10,7 @@ function NavbarUserButton() {
 
   const handleLogout = () => {
     logout();
+    toast.success("You have been logged out");
   }
 
   const toggleDropdown = () => {
