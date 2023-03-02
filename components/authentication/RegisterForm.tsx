@@ -1,22 +1,119 @@
+import { FormEvent, useEffect, useState } from "react";
+import { IoMail, IoLockClosed } from "react-icons/io5";
+import { APIQueries } from "../../common/queries/APIQueries";
+import { HttpError } from "../../common/clients/HttpClient";
+import { useUI } from "../UIContext";
 import FormSeparator from "../utils/FormSeparator";
-import AuthButton from "./AuthButton";
-import AuthField from "./AuthField";
+import AuthInput from "./AuthInput";
+import AuthModal from "./AuthModal";
 import AuthTitle from "./AuthTitle";
-import GoogleButton from "./GoogleButton";
+import ErrorMessage from "./ErrorMessage";
+import OAuthButton from "./OAuthButton";
+import Button from "../utils/Button/Button";
+import { useAuth } from "../AuthContext";
 
-function RegisterForm() {
+interface RegisterFormProps {
+}
+
+function RegisterForm({
+
+}: RegisterFormProps) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { setModalView, closeModal } = useUI();
+  const { login } = useAuth();
+
+  const switchToLogin = () => {
+    setModalView("LOGIN_VIEW");
+  }
+
+  const handleRegister = async (e: FormEvent) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      setMessage("");
+
+      const response = await APIQueries.register(email, password, passwordConfirmation);
+      login(response.token);
+
+      closeModal();
+    } catch (error) {
+      if (error instanceof HttpError) {
+        setMessage(error.message);
+      } else {
+        setMessage("Something went wrong. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <form>
-      <AuthTitle title="Sign Up" />
-      <div className="space-y-6">
-        <GoogleButton />
-        <FormSeparator />
-        <AuthField label="Email" type="email" />
-        <AuthField label="Password" type="password" />
-        <AuthField label="Confirm Password" type="password" />
-        <AuthButton label="Sign Up" />
+    <AuthModal>
+      <form className="mb-4" onSubmit={handleRegister}>
+        <AuthTitle title="Sign Up" />
+        <div className="space-y-4">
+          <OAuthButton label="Sign Up with Google" icon="/google.png" />
+          <OAuthButton label="Sign Up with Facebook" icon="/facebook.png" />
+
+          <FormSeparator />
+
+          <AuthInput
+            label="Email"
+            type="email"
+            placeholder="email@example.com"
+            icon={<IoMail />}
+            onChange={setEmail}
+          />
+
+          <AuthInput
+            label="Password"
+            type="password"
+            placeholder="•••••••••"
+            icon={<IoLockClosed />}
+            onChange={setPassword}
+          />
+
+          <AuthInput
+            label="Confirm Password"
+            type="password"
+            placeholder="•••••••••"
+            icon={<IoLockClosed />}
+            onChange={setPasswordConfirmation}
+          />
+
+          {message && (
+            <ErrorMessage
+              message={message}
+            />
+          )}
+
+          <Button
+            type="submit"
+            loading={loading}
+            disabled={loading}
+            color="orange"
+            className="w-full"
+          >
+            Sign Up
+          </Button>
+        </div>
+      </form>
+      <div className="flex space-x-2 text-sm">
+        <span>
+          Already have an account ?
+        </span>
+        <a className="text-orange-600 hover:text-orange-500 cursor-pointer"
+          onClick={switchToLogin}
+        >
+          Login
+        </a>
       </div>
-    </form>
+    </AuthModal>
   )
 }
 

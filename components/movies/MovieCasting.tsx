@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { Cast } from "../../models/Cast";
 import Carrousel from "../utils/Carrousel";
 import CarrouselItem from "../utils/CarrouselItem";
@@ -13,7 +13,7 @@ function MovieCasting({
   movieId
 }: MovieCastingProps) {
 
-  const { data, isLoading } = useQuery<Cast[]>(APIQueries.movieCasting(movieId));
+  const { data, isLoading } = useQuery<Cast[]>(TmdbQueries.movieCasting(movieId));
 
   return (
     <>

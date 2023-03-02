@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import Carrousel from "../utils/Carrousel";
@@ -14,7 +14,7 @@ interface MovieRecommendationsProps {
 function MovieRecommendations({
   movieId
 } : MovieRecommendationsProps) {
-  const { data, isLoading } = useQuery<PaginationResponse<Movie>>(APIQueries.movieRecommendations(movieId));
+  const { data, isLoading } = useQuery<PaginationResponse<Movie>>(TmdbQueries.movieRecommendations(movieId));
 
   return (
     <>

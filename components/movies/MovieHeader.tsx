@@ -9,7 +9,7 @@ import Modal from "../utils/Modal";
 import VideoPlayer from "../utils/VideoPlayer";
 import MovieProviders from "./MovieProviders";
 import { useQuery } from "@tanstack/react-query";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { WatchProvider } from "../../models/WatchProvider";
 import { unmountComponentAtNode } from "react-dom";
 
@@ -20,7 +20,7 @@ interface MovieHeaderProps {
 function MovieHeader({
   movie
 }: MovieHeaderProps) {
-  const providers = useQuery<WatchProvider[]>(APIQueries.movieWatchProviders(movie.id));
+  const providers = useQuery<WatchProvider[]>(TmdbQueries.movieWatchProviders(movie.id));
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const handlePlayButtonClick = () => {
@@ -111,13 +111,13 @@ function MovieHeader({
       <div className="mt-3">
       </div>
                     
-      <Modal  
+      {/* <Modal  
         isOpened={isModalOpened}
         close={handleCloseModal}>
           {isModalOpened && ( 
             <VideoPlayer video={getMovieTrailer(movie)} />
           )}
-      </Modal>
+      </Modal> */}
     </>
   )
 }

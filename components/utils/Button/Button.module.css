@@ -1,0 +1,25 @@
+.root {
+  @apply inline-flex items-center font-medium rounded-lg text-sm px-5 py-2
+  text-center justify-center cursor-pointer border border-transparent outline-none
+  transition duration-150 ease-in-out
+}
+
+.root:hover {
+  @apply scale-105
+}
+
+.orange {
+  @apply bg-orange-600 text-white border-orange-600
+}
+
+.orange:disabled {
+  @apply bg-orange-400 text-white border-orange-400
+}
+
+.white {
+  @apply bg-white text-gray-800  border-gray-300
+}
+
+.white:disabled {
+  @apply bg-gray-200 text-gray-800  border-gray-300
+}

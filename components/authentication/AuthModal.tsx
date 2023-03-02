@@ -2,27 +2,26 @@ import { useState } from "react";
 import Modal from "../utils/Modal";
 import RegisterForm from "./RegisterForm";
 import ModalCloseButton from "../utils/ModalCloseButton";
+import { useUI } from "../UIContext";
 
-function AuthModal() {
-  const [showModal, setShowModal] = useState(true);
+interface AuthModalProps {
+  children: React.ReactNode;
+}
 
-  const openModal = () => {
-    setShowModal(true);
-  }
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  }
+function AuthModal({
+  children,
+} : AuthModalProps) {
+  
+  const { closeModal } = useUI()
 
   return (
-    <Modal
-      isOpened={showModal}
-      close={handleCloseModal}>
-      <div className="p-8 min-w-[22rem]">
-        <ModalCloseButton close={handleCloseModal} />
-        <RegisterForm />
+    <div className="px-10 py-6 min-w-[20rem] max-w-[24rem]">
+      <ModalCloseButton close={closeModal} />
+
+      <div className="flex flex-col items-center">
+        {children}
       </div>
-    </Modal>
+    </div>
   )
 }
 

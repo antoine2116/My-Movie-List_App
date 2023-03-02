@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import GenreList from "../../components/genres/GenreList";
 import MovieList from "../../components/movies/MovieList";
@@ -10,7 +10,7 @@ function Genre() {
   const id = Number(getStringQueryParam("id", router.query));
 
   return (
-    <MovieList query={APIQueries.moviesByGenre(id)} />
+    <MovieList query={TmdbQueries.moviesByGenre(id)} />
   )
 }
 

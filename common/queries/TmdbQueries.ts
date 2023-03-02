@@ -1,16 +1,16 @@
-import { Cast } from "../models/Cast";
-import { Genre, Genres } from "../models/Genre";
-import { Movie } from "../models/Movie";
-import { MovieDetails } from "../models/MovieDetails";
-import { PaginationResponse } from "../models/PaginationResponse";
-import { WatchProvider } from "../models/WatchProvider";
-import { HttpClient } from "./HttpClient";
+import { Cast } from "../../models/Cast";
+import { Genres } from "../../models/Genre";
+import { Movie } from "../../models/Movie";
+import { MovieDetails } from "../../models/MovieDetails";
+import { PaginationResponse } from "../../models/PaginationResponse";
+import { WatchProvider } from "../../models/WatchProvider";
+import { HttpClient } from "../clients/HttpClient";
 
 export const getNextPageParam = (data : PaginationResponse<Movie>) => {
   return data.total_pages == data.page ? undefined : data.page + 1;
 }
 
-export const APIQueries = {
+export const TmdbQueries = {
   popularMovies: () => ({
     queryKey: ["popularMovies"],
     queryFn: ({ pageParam = 1 }) =>

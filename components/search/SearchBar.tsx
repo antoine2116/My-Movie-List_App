@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useMemo, useState } from "react";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import { getAllResults } from "../../common/helpers/Utils";
 import { Movie } from "../../models/Movie";
@@ -19,7 +19,7 @@ function SearchBar() {
   const [ignoreBlur, setIgnoreBlur] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
 
-  const {data, status} = useInfiniteQuery<PaginationResponse<Movie>>(APIQueries.searchMovie(searchValue));
+  const {data, status} = useInfiniteQuery<PaginationResponse<Movie>>(TmdbQueries.searchMovie(searchValue));
 
   const options = useMemo<Movie[]>(
     () => data ? getAllResults(data) : [],

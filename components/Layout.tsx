@@ -3,8 +3,34 @@ import Navbar from "./navigation/Navbar";
 import ProgressBar from "./navigation/ProgressBar";
 import Sidebar from "./navigation/Sidebar";
 import AuthModal from "./authentication/AuthModal";
+import Modal from "./utils/Modal";
+import LoginForm from "./authentication/LoginForm";
+import RegisterForm from "./authentication/RegisterForm";
+import VideoPlayer from "./utils/VideoPlayer";
+import { useUI } from "./UIContext";
 
 function Layout({ children }: { children: React.ReactNode }) {
+	
+	const ModalView: React.FC<{ modalView: string; closeModal(): any }> = ({
+		modalView,
+		closeModal,
+	}) => {
+		return (
+			<Modal onClose={closeModal}>
+				{modalView === 'LOGIN_VIEW' && <LoginForm />}
+				{modalView === 'REGISTER_VIEW' && <RegisterForm />}
+				{/* {modalView === 'VIDEO_VIEW' && <VideoPlayer />} */}
+			</Modal>
+		)
+	}
+	
+	const ModalUI: React.FC = () => {
+		const { closeModal, modalView } = useUI()
+		return (
+			<ModalView modalView={modalView} closeModal={closeModal} />
+		) 
+	}
+
 	return (
 		<>
 			<Head>
@@ -12,6 +38,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 				<meta name="description" content="Apou&apos;s Films" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+
+			<ModalUI />
 
 			<div className="antialiased text-black bg-white">
 				<Navbar />

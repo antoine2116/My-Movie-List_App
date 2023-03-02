@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { getStringQueryParam } from "../common/helpers/QueryHelper";
-import { APIQueries } from "../common/APIQueries";
+import { TmdbQueries } from "../common/queries/TmdbQueries";
 import MovieList from "../components/movies/MovieList";
 import SearchBar from "../components/search/SearchBar";
 import GenreList from "../components/genres/GenreList";
@@ -19,7 +19,7 @@ function Search() {
 
         <div className="col-span-5">
           <SearchBar />
-          <MovieList query={APIQueries.searchMovie(search)} />
+          <MovieList query={TmdbQueries.searchMovie(search)} />
         </div>
 
       </div>

@@ -11,10 +11,10 @@ function GenreLink({
   active
 } : GenreLinkProps) {
   return (
-    <li className="mt-4" key={genre.id}>
+    <li key={genre.id}>
       <Link
         href={`/genre/${genre.id}`}
-        className={`block pl-3 cursor-pointer text-gray-900 hover:text-orange-600`}>
+        className={`block pl-3 cursor-pointer text-sm text-gray-900 hover:text-orange-600`}>
         {genre.name}
       </Link>
     </li>

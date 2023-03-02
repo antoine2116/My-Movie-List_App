@@ -4,7 +4,7 @@ import { MovieDetails } from "../../models/MovieDetails";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import { WatchProvidingCountries } from "../../models/WatchProvidingCountries";
 import { filterCast, filterMovies, filterWatchProviders } from "../helpers/Utils";
-import { TmdbClient } from "../TmdbClient";
+import { TmdbClient } from "../clients/TmdbClient";
 
 const getPopularMovies = async (page: number) => {
   const response = await TmdbClient.get<PaginationResponse<Movie>>(

@@ -1,7 +1,7 @@
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import { filterMovies } from "../helpers/Utils";
-import { TmdbClient } from "../TmdbClient";
+import { TmdbClient } from "../clients/TmdbClient";
 
 const searchMovies = async (
     page: number,

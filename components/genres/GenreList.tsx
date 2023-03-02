@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { APIQueries } from "../../common/APIQueries";
+import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { Genre, Genres } from "../../models/Genre"
 import GenreLink from "./GenreLink ";
 
@@ -11,16 +11,16 @@ export default function GenreList({
   activeId,
 } : GenreListProps) {
 
-  const { data } = useQuery<Genres>(APIQueries.genres());
+  const { data } = useQuery<Genres>(TmdbQueries.genres());
 
   return (
     <li>
-      <h5 className="flex items-center text-xl mb-2">
+      <h5 className="flex items-center text-lg mb-2">
         <div className="font-semibold text-black">
           Genres
         </div>
       </h5>
-      <ul>
+      <ul className="space-y-3">
         {
           data?.genres.map((genre: Genre) => (
             <GenreLink
