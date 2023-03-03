@@ -15,7 +15,7 @@ export default function GenreList({
 
   return (
     <li>
-      <h5 className="flex items-center text-lg mb-2">
+      <h5 className="flex items-center text-md mb-2">
         <div className="font-semibold text-black">
           Genres
         </div>
