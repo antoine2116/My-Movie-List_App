@@ -19,13 +19,15 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
-  const login = (token: string) => {
-    setUserToken(token);
+  const login = (user: User) => {
+    setUserToken(user.token);
+    setUser(user);
     setLoggedIn(true);
   }
 
   const logout = () => {
     removeUserToken();
+    setUser(null);
     setLoggedIn(false);
   }
 

@@ -1,4 +1,4 @@
-import { AuthResponse } from "../../models/AuthResponse"
+import { User } from "../../models/User"
 import { RestAPIClient } from "../clients/RestAPIClient"
 
 export const APIQueries = {
@@ -7,7 +7,7 @@ export const APIQueries = {
     password: string,
     passwordConfirmation: string
   ) => {
-    return RestAPIClient.post<AuthResponse>("/auth/register", {
+    return RestAPIClient.post<User>("/auth/register", {
       user:  {
         email,
         password,
@@ -20,7 +20,7 @@ export const APIQueries = {
     email: string,
     password: string
   ) => {
-    return RestAPIClient.post<AuthResponse>("/auth/login", {
+    return RestAPIClient.post<User>("/auth/login", {
       user:  {
         email,
         password

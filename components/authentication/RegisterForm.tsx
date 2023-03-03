@@ -38,8 +38,8 @@ function RegisterForm({
       setLoading(true);
       setMessage("");
 
-      const response = await APIQueries.register(email, password, passwordConfirmation);
-      login(response.token);
+      const user = await APIQueries.register(email, password, passwordConfirmation);
+      login(user);
       toast.success("Welcome to Apou's Films!");
 
       closeModal();
