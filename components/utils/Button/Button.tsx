@@ -11,7 +11,7 @@ export type ButtonColor =
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   type: "button" | "submit" | "reset";
-  color: ButtonColor;
+  color?: ButtonColor;
   onClick?: () => void;
   loading?: boolean;
   children?: React.ReactNode;
@@ -20,7 +20,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 function Button({
   className,
   type,
-  color,
+  color = "orange",
   onClick = () => { },
   loading = false,
   children,

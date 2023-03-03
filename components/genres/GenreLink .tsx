@@ -14,7 +14,7 @@ function GenreLink({
     <li key={genre.id}>
       <Link
         href={`/genre/${genre.id}`}
-        className={`block pl-3 cursor-pointer text-sm text-gray-900 hover:text-orange-600`}>
+        className={`block pl-3 cursor-pointer text-sm text-slate-700 hover:text-orange-600`}>
         {genre.name}
       </Link>
     </li>
