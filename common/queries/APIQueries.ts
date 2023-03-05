@@ -1,4 +1,5 @@
 import { User } from "../../models/User"
+import { getUserToken } from "../auth/UserToken"
 import { RestAPIClient } from "../clients/RestAPIClient"
 
 export const APIQueries = {
@@ -26,5 +27,9 @@ export const APIQueries = {
         password
       }
     })
+  },
+
+  profile: () => {
+    return RestAPIClient.get<User>("/api/profile");
   }
 }

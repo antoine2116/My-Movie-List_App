@@ -29,9 +29,9 @@ function NavbarUserButton() {
                 <div className="font-medium truncate">{(user && user.email)}</div>
               </div>
               <ul className="overflow-hidden">
-                <li className="px-4 py-3 hover:bg-gray-200 cursor-pointer">
+                <li className="">
                   <a
-                    className="block text-sm text-gray-700"
+                    className="block text-sm text-gray-700 px-4 py-3 hover:bg-gray-200 cursor-pointer"
                     onClick={handleLogout}>
                     Logout
                   </a>

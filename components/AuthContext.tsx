@@ -1,6 +1,7 @@
-import { createContext, FC, ReactNode, useContext, useMemo, useState } from "react";
-import { removeUserToken, setUserToken } from "../common/auth/UserToken";
+import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { getUserToken, removeUserToken, setUserToken } from "../common/auth/UserToken";
 import { User } from "../models/User";
+import { APIQueries } from "../common/queries/APIQueries";
 
 export interface AuthState {
   user : User | null;
@@ -19,9 +20,24 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
+  const getProfile = async () => {
+    try {
+      const user = await APIQueries.profile();
+      setUser(user);
+    }
+    catch  {}
+  }
+
+  useEffect(()  => {
+    const userToken = getUserToken();
+    if (userToken) {
+      setLoggedIn(true);
+      getProfile();
+    }
+  }, [])
+
   const login = (user: User) => {
     setUserToken(user.token);
-    setUser(user);
     setLoggedIn(true);
   }
 

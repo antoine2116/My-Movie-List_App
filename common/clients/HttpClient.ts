@@ -10,7 +10,19 @@ export class HttpError {
   }
 }
 
-async function handleResponse(res: Response) {
+const generateHeaders = (token?: string) : HeadersInit => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json'
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  return headers;
+};
+
+const handleResponse = async (res: Response) => {
   if (res.ok) {
     return await res.json();
   } else {
@@ -29,20 +41,23 @@ export const HttpClient = {
   get: <Data> (
     url: string,
     params?: queryString.StringifiableRecord,
+    token?: string
   ): Promise<Data> =>
-    fetch(queryString.stringifyUrl({ url, query: params })).then(
+    fetch(queryString.stringifyUrl({ url, query: params }), {
+      method: 'GET',
+      headers: generateHeaders(token),
+    }).then(
       handleResponse
   ),
   post: <Data> (
     url: string,
     body: any,
     params?: queryString.StringifiableRecord,
+    token?: string
   ): Promise<Data> =>
     fetch(queryString.stringifyUrl({ url, query: params }), {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: generateHeaders(token),
       body: JSON.stringify(body),
     }).then(
       handleResponse

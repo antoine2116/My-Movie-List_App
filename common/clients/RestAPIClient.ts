@@ -1,3 +1,4 @@
+import { getUserToken } from '../auth/UserToken';
 import { HttpClient } from './HttpClient';
 import queryString from 'query-string';
 
@@ -9,6 +10,7 @@ export const RestAPIClient = {
     const response = await HttpClient.get<T>(
       `${process.env.NEXT_PUBLIC_REST_API_URL}${endpoint}`,
       { ...params },
+      getUserToken()
     );
     return response;
   },
@@ -21,6 +23,7 @@ export const RestAPIClient = {
       `${process.env.NEXT_PUBLIC_REST_API_URL}${endpoint}`,
       body,
       { ...params },
+      getUserToken()
     );
     return response;  
   },
