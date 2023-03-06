@@ -13,6 +13,7 @@ import { setUserToken } from "../../common/auth/UserToken";
 import { useAuth } from "../AuthContext";
 import Button from "../utils/Button/Button";
 import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -49,6 +50,10 @@ function LoginForm() {
     }
   }
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: token => console.log(token),
+  })
+
   return (
     <AuthModal>
       <form className="mb-4" onSubmit={handleLogin}>
@@ -57,6 +62,7 @@ function LoginForm() {
           <OAuthButton 
             label="Login with Google" 
             icon="/google.png"
+            onClick={() => googleLogin()}
           />
 
           <OAuthButton 
