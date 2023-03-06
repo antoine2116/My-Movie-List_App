@@ -32,9 +32,14 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
     const userToken = getUserToken();
     if (userToken) {
       setLoggedIn(true);
-      getProfile();
     }
   }, [])
+
+  useEffect(() => {
+    if (loggedIn) {
+      getProfile();
+    }
+  }, [loggedIn])
 
   const login = (user: User) => {
     setUserToken(user.token);
