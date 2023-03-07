@@ -4,9 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Layout from '../components/Layout';
 import { Inter } from '@next/font/google'
 import { ManagedUIContext } from '../components/UIContext';
-import { AuthProvider } from '../components/AuthContext';
-import { ToastContainer } from 'react-toastify';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { ManagedAuthContext } from '../components/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,16 +14,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <main className={inter.className}>
-        <AuthProvider>
-          <GoogleOAuthProvider clientId='210461145121-50lqvbecdp41h9puu79ckilcffetberd.apps.googleusercontent.com'>
-            <ManagedUIContext>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </ManagedUIContext>
-          </GoogleOAuthProvider>
-        </AuthProvider>
-        <div id="portal"></div>
+        <ManagedAuthContext>
+          <ManagedUIContext>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+            <div id="portal"></div>
+          </ManagedUIContext>
+        </ManagedAuthContext>
       </main>
     </QueryClientProvider>
   )

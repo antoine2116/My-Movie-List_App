@@ -13,13 +13,12 @@ function NavbarUserButton() {
     toast.success("You have been logged out");
   }
 
-
   return (
     <OutsideClickHandler disabled={!display} onOutsideClick={() => setDisplay(false)}>
       <div className="relative">
         {/* Avatar */}
         <div 
-          className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-orange-600 hover:bg-orange-500 ring-2 ring-offset-2 ring-orange-400 rounded-full cursor-pointer transition-transform ease-in-out hover:scale-110"
+          className="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-orange-600 hover:bg-orange-500 ring-2 ring-offset-2 ring-orange-400 rounded-full cursor-pointer transition-transform ease-in-out hover:scale-110"
           onClick={() => setDisplay(!display)}
         >
           <span className="font-medium text-white uppercase">{(user && user.email[0])}</span>
@@ -27,7 +26,7 @@ function NavbarUserButton() {
         {/* Dropdown */}
         {
           display && (
-            <div className="z-10 absolute right-0 top-12 border border-gray-200 bg-white divide-y divide-gray-100 rounded-lg shadow-md w-56 overflow-hidden">
+            <div className="z-10 absolute right-0 top-10 border border-gray-200 bg-white divide-y divide-gray-100 rounded-lg shadow-md w-56 overflow-hidden">
               <div className="px-4 py-3 text-sm text-gray-900">
                 <div>Signed in as</div>
                 <div className="font-medium truncate text-sm">{(user && user.email)}</div>

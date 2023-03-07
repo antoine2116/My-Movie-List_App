@@ -2,6 +2,7 @@ import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState 
 import { getUserToken, removeUserToken, setUserToken } from "../common/auth/UserToken";
 import { User } from "../models/User";
 import { APIQueries } from "../common/queries/APIQueries";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export interface AuthState {
   user : User | null;
@@ -64,3 +65,17 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
 }
 
 export const useAuth = () => useContext(AuthContext);
+
+export const ManagedAuthContext: FC<{ children?: ReactNode }> = ({
+  children,
+}) => {
+  const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string;
+  
+  return (
+    <AuthProvider>
+      <GoogleOAuthProvider clientId={googleClientId}>
+        {children}
+      </GoogleOAuthProvider>
+    </AuthProvider>
+  )
+}
