@@ -12,6 +12,8 @@ import OAuthButton from "./OAuthButton";
 import Button from "../utils/Button/Button";
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
+import { User } from "../../models/User";
 
 interface RegisterFormProps {
 }
@@ -31,14 +33,12 @@ function RegisterForm({
     setModalView("LOGIN_VIEW");
   }
 
-  const handleRegister = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const genericRegister = async (registerQuery : Promise<User>) => {
     try {
       setLoading(true);
       setMessage("");
 
-      const user = await APIQueries.register(email, password, passwordConfirmation);
+      const user = await registerQuery;
       login(user);
       toast.success("Welcome to Apou's Films!");
 
@@ -54,13 +54,33 @@ function RegisterForm({
     }
   }
 
+  const basicRegister = async (e: FormEvent) => {
+    e.preventDefault();
+    genericRegister(APIQueries.register(email, password, passwordConfirmation));
+  }
+
+  const googleRegister = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      genericRegister(APIQueries.googleLogin(tokenResponse.access_token));
+    },
+  });
+
+
   return (
     <AuthModal>
-      <form className="mb-4" onSubmit={handleRegister}>
+      <form className="mb-4" onSubmit={basicRegister}>
         <AuthTitle title="Sign Up" />
         <div className="space-y-4">
-          <OAuthButton label="Sign Up with Google" icon="/google.png" />
-          <OAuthButton label="Sign Up with Facebook" icon="/facebook.png" />
+          <OAuthButton
+            label="Sign Up with Google" 
+            icon="/google.png"
+            onClick={() => googleRegister()} 
+          />
+
+          <OAuthButton 
+            label="Sign Up with Facebook" 
+            icon="/facebook.png"
+          />
 
           <FormSeparator />
 

@@ -9,11 +9,11 @@ import AuthModal from "./AuthModal";
 import AuthTitle from "./AuthTitle";
 import ErrorMessage from "./ErrorMessage";
 import OAuthButton from "./OAuthButton";
-import { setUserToken } from "../../common/auth/UserToken";
 import { useAuth } from "../AuthContext";
 import Button from "../utils/Button/Button";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
+import { User } from "../../models/User";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -21,28 +21,28 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const { setModalView, closeModal } = useUI();
-  const { login} = useAuth();
+  const { login } = useAuth();
   
   const switchToRegister = () => {
     setModalView("REGISTER_VIEW");
   }
 
-  const handleLogin = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const genericLogin = async (loginQuery : Promise<User>) => {
     try {
       setLoading(true);
       setMessage("");
 
-      const user = await APIQueries.login(email, password);
+      const user = await loginQuery;
       login(user);
-      toast.success("Welcome back!");
       
+      toast.success("Welcome !");
       closeModal();
     } catch (error) {
       if (error instanceof HttpError) {
         setMessage(error.message);
       } else {
+        console.log(error);
+        
         setMessage("Something went wrong. Please try again later.");
       }
     } finally {
@@ -50,13 +50,20 @@ function LoginForm() {
     }
   }
 
+  const basicLogin = async (e: FormEvent) => {
+    e.preventDefault();
+    genericLogin(APIQueries.login(email, password));
+  }
+
   const googleLogin = useGoogleLogin({
-    onSuccess: token => console.log(token),
-  })
+    onSuccess: (tokenResponse) => {
+      genericLogin(APIQueries.googleLogin(tokenResponse.access_token));
+    }
+  });
 
   return (
     <AuthModal>
-      <form className="mb-4" onSubmit={handleLogin}>
+      <form className="mb-4" onSubmit={basicLogin}>
         <AuthTitle title="Login" />
         <div className="space-y-5">
           <OAuthButton 
