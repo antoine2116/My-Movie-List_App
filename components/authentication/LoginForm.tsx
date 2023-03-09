@@ -14,6 +14,7 @@ import Button from "../utils/Button/Button";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
 import { User } from "../../models/User";
+import { getGoogleUrl } from "../../common/auth/GoogleUrl";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -42,7 +43,6 @@ function LoginForm() {
         setMessage(error.message);
       } else {
         console.log(error);
-        
         setMessage("Something went wrong. Please try again later.");
       }
     } finally {
@@ -55,27 +55,21 @@ function LoginForm() {
     genericLogin(APIQueries.login(email, password));
   }
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      genericLogin(APIQueries.googleLogin(tokenResponse.access_token));
-    }
-  });
-
   return (
     <AuthModal>
       <form className="mb-4" onSubmit={basicLogin}>
         <AuthTitle title="Login" />
         <div className="space-y-5">
           <OAuthButton 
-            label="Login with Google" 
+            label="Login with Google"
             icon="/google.png"
-            onClick={() => googleLogin()}
+            href={getGoogleUrl()}
           />
 
-          <OAuthButton 
+          {/* <OAuthButton 
             label="Login with Facebook"
             icon="/facebook.png"
-           />
+           /> */}
 
           <FormSeparator />
 

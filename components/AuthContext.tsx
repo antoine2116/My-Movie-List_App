@@ -69,13 +69,9 @@ export const useAuth = () => useContext(AuthContext);
 export const ManagedAuthContext: FC<{ children?: ReactNode }> = ({
   children,
 }) => {
-  const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string;
-  
   return (
     <AuthProvider>
-      <GoogleOAuthProvider clientId={googleClientId}>
         {children}
-      </GoogleOAuthProvider>
     </AuthProvider>
   )
 }
