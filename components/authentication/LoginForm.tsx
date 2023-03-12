@@ -28,12 +28,14 @@ function LoginForm() {
     setModalView("REGISTER_VIEW");
   }
 
-  const genericLogin = async (loginQuery : Promise<User>) => {
+  const basicLogin = async (e: FormEvent) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
       setMessage("");
 
-      const user = await loginQuery;
+      const user = await APIQueries.login(email, password);
       login(user);
       
       toast.success("Welcome !");
@@ -48,11 +50,6 @@ function LoginForm() {
     } finally {
       setLoading(false);
     }
-  }
-
-  const basicLogin = async (e: FormEvent) => {
-    e.preventDefault();
-    genericLogin(APIQueries.login(email, password));
   }
 
   return (

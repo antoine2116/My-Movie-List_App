@@ -32,10 +32,4 @@ export const APIQueries = {
   profile: () => {
     return RestAPIClient.get<User>("/api/profile");
   },
-
-  googleLogin: (token: string) => {
-    return RestAPIClient.get<User>("/oauth/google", {
-      token
-    })
-  }
 }

@@ -14,6 +14,7 @@ import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
 import { User } from "../../models/User";
+import { getGoogleUrl } from "../../common/auth/GoogleUrl";
 
 interface RegisterFormProps {
 }
@@ -33,12 +34,14 @@ function RegisterForm({
     setModalView("LOGIN_VIEW");
   }
 
-  const genericRegister = async (registerQuery : Promise<User>) => {
+  const basicRegister = async (e: FormEvent) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
       setMessage("");
 
-      const user = await registerQuery;
+      const user = await APIQueries.register(email, password, passwordConfirmation);
       login(user);
       toast.success("Welcome to Apou's Films!");
 
@@ -54,18 +57,6 @@ function RegisterForm({
     }
   }
 
-  const basicRegister = async (e: FormEvent) => {
-    e.preventDefault();
-    genericRegister(APIQueries.register(email, password, passwordConfirmation));
-  }
-
-  const googleRegister = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      genericRegister(APIQueries.googleLogin(tokenResponse.access_token));
-    },
-  });
-
-
   return (
     <AuthModal>
       <form className="mb-4" onSubmit={basicRegister}>
@@ -74,13 +65,13 @@ function RegisterForm({
           <OAuthButton
             label="Sign Up with Google" 
             icon="/google.png"
-            onClick={() => googleRegister()} 
+            href={getGoogleUrl()} 
           />
 
-          <OAuthButton 
+          {/* <OAuthButton 
             label="Sign Up with Facebook" 
             icon="/facebook.png"
-          />
+          /> */}
 
           <FormSeparator />
 

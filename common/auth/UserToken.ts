@@ -2,7 +2,7 @@ import Cookies from "js-cookie"
 
 export const setUserToken = (token: string) => {
   Cookies.set(
-    "user_token",
+    "token",
      token, 
      {
       expires: 7
@@ -11,9 +11,9 @@ export const setUserToken = (token: string) => {
 }
 
 export const getUserToken = () => {
-  return Cookies.get("user_token")
+  return Cookies.get("token")
 }
 
 export const removeUserToken = () => {
-  Cookies.remove("user_token")
+  Cookies.remove("token")
 }
