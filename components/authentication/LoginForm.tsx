@@ -12,9 +12,7 @@ import OAuthButton from "./OAuthButton";
 import { useAuth } from "../AuthContext";
 import Button from "../utils/Button/Button";
 import { toast } from "react-toastify";
-import { useGoogleLogin } from "@react-oauth/google";
-import { User } from "../../models/User";
-import { getGoogleUrl } from "../../common/auth/GoogleUrl";
+import { getGitHubUrl, getGoogleUrl } from "../../common/auth/OAuthUrls";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -63,10 +61,11 @@ function LoginForm() {
             href={getGoogleUrl()}
           />
 
-          {/* <OAuthButton 
-            label="Login with Facebook"
-            icon="/facebook.png"
-           /> */}
+          <OAuthButton 
+            label="Login with GitHub"
+            icon="/github.png"
+            href={getGitHubUrl()}
+           />
 
           <FormSeparator />
 

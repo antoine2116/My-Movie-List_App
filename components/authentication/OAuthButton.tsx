@@ -14,16 +14,16 @@ function OAuthButton({
   href,
 }: OAuthButtonProps) {
   return (
-    <Link href={href}>
-      <Button
-        type="button"
-        color="white"
-        className="w-full"
-      >
+    <Button
+      type="button"
+      color="white"
+      className="w-full"
+    >
+      <Link href={href} className="inline-flex">
         <Image src={icon} alt={label} height="20" width="20" className="mr-3" />
         {label}
-      </Button>
-    </Link>
+      </Link>
+    </Button>
   )
 }
 

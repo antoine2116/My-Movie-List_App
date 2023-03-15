@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { IoMail, IoLockClosed } from "react-icons/io5";
 import { APIQueries } from "../../common/queries/APIQueries";
 import { HttpError } from "../../common/clients/HttpClient";
@@ -12,9 +12,7 @@ import OAuthButton from "./OAuthButton";
 import Button from "../utils/Button/Button";
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
-import { useGoogleLogin } from "@react-oauth/google";
-import { User } from "../../models/User";
-import { getGoogleUrl } from "../../common/auth/GoogleUrl";
+import { getGitHubUrl, getGoogleUrl } from "../../common/auth/OAuthUrls";
 
 interface RegisterFormProps {
 }
@@ -68,10 +66,11 @@ function RegisterForm({
             href={getGoogleUrl()} 
           />
 
-          {/* <OAuthButton 
-            label="Sign Up with Facebook" 
-            icon="/facebook.png"
-          /> */}
+          <OAuthButton
+            label="Sign Up with GitHub"
+            icon="/github.png"
+            href={getGitHubUrl()}
+          />
 
           <FormSeparator />
 
