@@ -33,8 +33,8 @@ function LoginForm() {
       setLoading(true);
       setMessage("");
 
-      const user = await APIQueries.login(email, password);
-      login(user);
+      const response = await APIQueries.login(email, password);
+      login(response.token);
       
       toast.success("Welcome !");
       closeModal();

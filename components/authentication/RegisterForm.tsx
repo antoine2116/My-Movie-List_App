@@ -39,10 +39,10 @@ function RegisterForm({
       setLoading(true);
       setMessage("");
 
-      const user = await APIQueries.register(email, password, passwordConfirmation);
-      login(user);
-      toast.success("Welcome to Apou's Films!");
+      const response = await APIQueries.register(email, password, passwordConfirmation);
+      login(response.token);
 
+      toast.success("Welcome to Apou's Films!");
       closeModal();
     } catch (error) {
       if (error instanceof HttpError) {

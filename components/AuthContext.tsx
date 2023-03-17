@@ -23,8 +23,8 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
 
   const getProfile = async () => {
     try {
-      const user = await APIQueries.profile();
-      setUser(user);
+      const response = await APIQueries.profile();
+      setUser(response);
     }
     catch  {}
   }
@@ -42,8 +42,8 @@ export const AuthProvider: FC<{ children?: ReactNode }> = (props) => {
     }
   }, [loggedIn])
 
-  const login = (user: User) => {
-    setUserToken(user.token);
+  const login = (token: string) => {
+    setUserToken(token);
     setLoggedIn(true);
   }
 
