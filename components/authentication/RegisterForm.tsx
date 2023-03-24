@@ -13,6 +13,7 @@ import Button from "../utils/Button/Button";
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
 import { getGitHubUrl, getGoogleUrl } from "../../common/auth/OAuthUrls";
+import { RestAPIError } from "../../common/clients/RestAPIClient";
 
 interface RegisterFormProps {
 }
@@ -23,7 +24,7 @@ function RegisterForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState<RestAPIError | null>(null);
   const [loading, setLoading] = useState(false);
   const { setModalView, closeModal } = useUI();
   const { login } = useAuth();
@@ -37,18 +38,16 @@ function RegisterForm({
 
     try {
       setLoading(true);
-      setMessage("");
+      setError(null);
 
       const response = await APIQueries.register(email, password, passwordConfirmation);
       login(response.token);
 
       toast.success("Welcome to Apou's Films!");
       closeModal();
-    } catch (error) {
-      if (error instanceof HttpError) {
-        setMessage(error.message);
-      } else {
-        setMessage("Something went wrong. Please try again later.");
+    } catch (err) {
+      if (err instanceof RestAPIError) {
+        setError(err);
       }
     } finally {
       setLoading(false);
@@ -98,9 +97,9 @@ function RegisterForm({
             onChange={setPasswordConfirmation}
           />
 
-          {message && (
+          {error && (
             <ErrorMessage
-              message={message}
+              error={error}
             />
           )}
 

@@ -2,7 +2,6 @@ import { createContext, FC, ReactNode, useContext, useEffect, useMemo, useState 
 import { getUserToken, removeUserToken, setUserToken } from "../common/auth/UserToken";
 import { User } from "../models/User";
 import { APIQueries } from "../common/queries/APIQueries";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export interface AuthState {
   user : User | null;
