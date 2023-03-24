@@ -26,15 +26,15 @@ function NavbarUserButton() {
         {/* Dropdown */}
         {
           display && (
-            <div className="z-10 absolute right-0 top-10 border border-gray-200 bg-white divide-y divide-gray-100 rounded-lg shadow-md w-56 overflow-hidden">
-              <div className="px-4 py-3 text-sm text-gray-900">
+            <div className="z-10 absolute right-0 top-11 border border-gray-200 bg-white divide-y divide-gray-100 rounded-lg shadow-md w-52 overflow-hidden">
+              <div className="px-3 py-2 text-sm text-gray-900">
                 <div>Signed in as</div>
                 <div className="font-medium truncate text-sm">{(user && user.email)}</div>
               </div>
               <ul className="overflow-hidden">
                 <li className="">
                   <a
-                    className="block text-sm text-gray-700 px-4 py-3 hover:bg-gray-200 cursor-pointer"
+                    className="block text-sm text-gray-700 px-3 py-2 hover:bg-gray-200 cursor-pointer"
                     onClick={handleLogout}>
                     Logout
                   </a>

@@ -8,6 +8,7 @@ import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
 import SearchInput from "./SearchInput";
 import SearchSuggestionList from "./SearchSuggestionList";
+import { useUI } from "../UIContext";
 
 function SearchBar() {
   const router = useRouter();
@@ -18,6 +19,7 @@ function SearchBar() {
   const [isSuggestionsVisibible, setIsSuggestionsVisible] = useState(false);
   const [ignoreBlur, setIgnoreBlur] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
+  const { setModalView, openModal, closeModal } = useUI();
 
   const {data, status} = useInfiniteQuery<PaginationResponse<Movie>>(TmdbQueries.searchMovie(searchValue));
 
@@ -41,6 +43,11 @@ function SearchBar() {
     setSelectedItemIndex(-1);
 
   }, [isFocused, searchValue]);
+
+  const openSearchModal = () => {
+    setModalView("SEARCH_VIEW");
+    openModal();
+  }
 
   const handleSetSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -73,7 +80,6 @@ function SearchBar() {
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
@@ -132,27 +138,19 @@ function SearchBar() {
   };
 
   return (
-    <div className="flex flex-wrap justify-center items-center mx-auto pb-4">
-      <div className="relative w-full md:w-1/2 lg:1/3">
+      <div className={`relative ${isFocused ? "w-[30rem]" : "w-[15rem]"} transition-all ease-in-out duration-300`}>
         <SearchInput 
-          search={searchValue}
-          onChange={handleSetSearchValue}
-          onClear={handleClearSearch}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          onKeyDown={(event) => handleKeyDown(event)}
-          suggestionsVisible={isSuggestionsVisibible}
+          onClick={openSearchModal}
         />
-        <SearchSuggestionList
+        {/* <SearchSuggestionList
           options={options}
           visible={isSuggestionsVisibible}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           isLoading={status === "loading"}
           selectedItemIndex={selectedItemIndex}
-        />
+        /> */}
       </div>
-    </div>
   )
 }
 

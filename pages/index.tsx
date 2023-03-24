@@ -5,7 +5,6 @@ import SearchBar from "../components/search/SearchBar";
 function Home() {
   return (
     <>
-      <SearchBar />
       <MovieList query={TmdbQueries.popularMovies()} />
     </>
   )

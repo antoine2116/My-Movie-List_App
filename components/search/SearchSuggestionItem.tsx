@@ -15,15 +15,15 @@ function SearchSuggestionItem({
   return (
     <li>
       <Link href={`/movie/${movie.id}`}>
-        <div className={`h-14 p-3 flex items-center hover:bg-gray-100 hover:cursor-pointer ${selected ? "bg-gray-100" : ""}`}>
+        <div className={`h-12 p-2 flex items-center text-sm hover:bg-gray-100 hover:cursor-pointer ${selected ? "bg-gray-100" : ""}`}>
           <Image
-            width={30}
-            height={50}
+            width={50}
+            height={75}
             src={getImageUrl(movie.poster_path)}
             alt={movie.title}
-            className={`mx-3  aspect-[500/750]`}
+            className={`ml-2 mr-4 h-9 w-9 rounded-full`}
           />
-          <div className="mr-3">
+          <div>
             {movie.title}
           </div>
         </div>

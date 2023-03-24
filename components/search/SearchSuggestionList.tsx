@@ -1,4 +1,5 @@
 import { Movie } from "../../models/Movie";
+import Maybe from "../utils/Maybe";
 import Spinner from "../utils/Spinner";
 import SearchSuggestionItem from "./SearchSuggestionItem";
 
@@ -30,18 +31,25 @@ function SearchSuggestionList({
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
         >
-          {isLoading 
-            ? 
-              <Spinner /> 
-            : 
-              options.map((movie: Movie, index: number) => (
-                <SearchSuggestionItem 
-                  key={movie.id} 
+          <Maybe condition={isLoading}>
+            <Spinner />
+          </Maybe>
+
+          <Maybe condition={!isLoading && options.length > 0}>
+            {options.map((movie: Movie, index: number) => (
+                <SearchSuggestionItem
+                  key={movie.id}
                   movie={movie}
                   selected={selectedItemIndex === index}
                 />
-              ))
-          }
+              ))}
+          </Maybe>
+
+          <Maybe condition={!isLoading && options.length == 0}>
+            <li className="h-14 p-3">
+              No results found
+            </li>
+          </Maybe>
         </ul>
       </div>
     </div>

@@ -29,6 +29,7 @@ type VIEWS =
   | "LOGIN_VIEW"
   | "REGISTER_VIEW"
   | "VIDEO_VIEW"
+  | "SEARCH_VIEW"
 
 export const UIContext = createContext<UIState | any>(initialState)
 UIContext.displayName = "UIContext";
