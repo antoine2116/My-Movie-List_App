@@ -82,6 +82,7 @@ export const UIProvider: FC<{ children?: ReactNode }> = (props) => {
       closeModal,
       setModalView
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [state]
   )
 

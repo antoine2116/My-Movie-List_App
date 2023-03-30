@@ -1,38 +1,46 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useState, useMemo } from "react";
-import { getStringQueryParam } from "../../common/helpers/QueryHelper";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { getAllResults } from "../../common/helpers/Utils";
 import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
-import Image from "next/image";
 import { getImageUrl } from "../../common/helpers/ImageHelper";
 import { IoAlertCircleSharp } from "react-icons/io5";
+import { useUI } from "../UIContext";
+import SearchResult from "./SearchResult";
 
 function SearchPalette() {
   const router = useRouter();
-  const search = getStringQueryParam("search", router.query);
 
-  const [query, setQuery] = useState(search);
-  const [selectedItemIndex, setSelectedItemIndex] = useState(-1);
-
-  const { data, status, isLoading } = useInfiniteQuery<PaginationResponse<Movie>>(TmdbQueries.searchMovie(query));
-
+  const [query, setQuery] = useState("");
+  const [selectedItemIndex, setSelectedItemIndex] = useState(0);
+  const { data, isLoading } = useInfiniteQuery<PaginationResponse<Movie>>(TmdbQueries.searchMovie(query));
+  const { displayModal, closeModal } = useUI();
+  const inputRef = useRef<HTMLInputElement>(null);
+  
   const results = useMemo<Movie[]>(
     () => data ? getAllResults(data) : [],
     [data]
   );
 
-  const handleClearSearch = () => {
-    setQuery("");
-  }
+  useEffect(() => {
+    // setQuery("");
+    // setSelectedItemIndex(0);
+
+    // if (!inputRef.current) return;
+
+    // inputRef.current.value = ""
+    // inputRef.current.focus();
+    // console.log(selectedItemIndex);
+    
+  }, [displayModal]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
-
+        
         setSelectedItemIndex((prevIndex) => {
           if (prevIndex === results.length - 1) {
             return 0;
@@ -58,14 +66,11 @@ function SearchPalette() {
         event.preventDefault();
 
         if (selectedItemIndex !== -1) {
+          closeModal(); 
           const movie = results[selectedItemIndex];
           router.push(`/movie/${movie.id}`);
-        } else {
-          performSearch();
         }
-        break;
 
-      case "Escape":
         break;
 
       default:
@@ -83,8 +88,10 @@ function SearchPalette() {
   };
 
   return (
-    <div className="max-w-xl w-[40rem] mx-auto transform divide-y divide-gray-200">
-      {/* Search bar */}
+    <div 
+      className="max-w-xl w-[40rem] mx-auto transform divide-y divide-gray-200"
+      onKeyDown={handleKeyDown}
+    >
       <div className="relative">
         <svg aria-hidden="true" className="pointer-events-none absolute top-3.5 left-4 h-5 w-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -92,9 +99,11 @@ function SearchPalette() {
         <input
           className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder:text-gray-600 focus:ring-0 sm:text-sm outline-none"
           placeholder="Search for a film..."
-          onChange={(e) => setQuery(e.target.value)}
+          ref={inputRef}
+          onChange={(event) => setQuery(event.target.value)}
         />
       </div>
+      
 
       {/* Results */}
       {!isLoading && (
@@ -102,25 +111,13 @@ function SearchPalette() {
           {query !== "" && results.length > 0 && (
             <div className="max-h-96 scroll-py-3 overflow-y-auto p-3">
               {results.map((movie, index) => (
-                <div className="flex cursor-default select-none rounded-xl p-3">
-                  <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg">
-                    <Image
-                      width={50}
-                      height={75}
-                      src={getImageUrl(movie.poster_path)}
-                      alt={movie.title}
-                      className={`ml-2 mr-4 w-8`}
-                    />
-                  </div>
-                  <div className="ml-4 flex-auto">
-                    <p className="text-sm font-medium text-gray-700">
-                      {movie.title}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {movie.release_date}
-                    </p>
-                  </div>
-                </div>
+                <SearchResult
+                  key={movie.id}
+                  title={movie.title}
+                  description={movie.release_date}
+                  image={getImageUrl(movie.poster_path)}
+                  active={selectedItemIndex === index}
+                />
               ))}
             </div>
           )}
