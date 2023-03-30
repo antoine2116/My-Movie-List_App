@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { useRouter } from "next/dist/client/router";
 import React, { useEffect, useMemo, useState } from "react";
 import { TmdbQueries } from "../../common/queries/TmdbQueries";
@@ -6,9 +6,8 @@ import { getStringQueryParam } from "../../common/helpers/QueryHelper";
 import { getAllResults } from "../../common/helpers/Utils";
 import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse";
-import SearchInput from "./SearchInput";
-import SearchSuggestionList from "./SearchSuggestionList";
 import { useUI } from "../UIContext";
+import SearchButton from "./SearchButton";
 
 function SearchBar() {
   const router = useRouter();
@@ -139,9 +138,7 @@ function SearchBar() {
 
   return (
       <div className={`relative ${isFocused ? "w-[30rem]" : "w-[15rem]"} transition-all ease-in-out duration-300`}>
-        <SearchInput 
-          onClick={openSearchModal}
-        />
+
         {/* <SearchSuggestionList
           options={options}
           visible={isSuggestionsVisibible}

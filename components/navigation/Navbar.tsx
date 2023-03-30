@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '../AuthContext'
 import SearchBar from '../search/SearchBar'
+import SearchButton from '../search/SearchButton'
 import { useUI } from '../UIContext'
 import Button from '../utils/Button/Button'
 import Maybe from '../utils/Maybe'
@@ -15,6 +16,11 @@ export default function Navbar() {
 
 	const openLoginModal = () => {
 		setModalView("LOGIN_VIEW");
+		openModal();
+	}
+
+	const openSearchModal = () => {
+		setModalView("SEARCH_VIEW");
 		openModal();
 	}
 
@@ -37,7 +43,9 @@ export default function Navbar() {
 								
 								{/* Searchbar */}
 								<div className="flex items-center">
-									<SearchBar />
+									<SearchButton
+										onClick={openSearchModal}
+									/>
 								</div>
 
 								<div className="flex items-center">
