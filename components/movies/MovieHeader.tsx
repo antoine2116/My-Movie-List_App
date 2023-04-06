@@ -3,15 +3,13 @@ import Image from "next/image";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { getBackdropUrl, getImageUrl } from "../../common/helpers/ImageHelper";
 import { convertToHours, convertVoteAverage } from "../../common/helpers/Utils";
-import { getMovieTrailer } from "../../common/helpers/VideoHelper";
+import { getMovieTrailerUrl } from "../../common/helpers/VideoHelper";
 import { MovieDetails } from "../../models/MovieDetails";
-import Modal from "../utils/Modal";
-import VideoPlayer from "../utils/VideoPlayer";
 import MovieProviders from "./MovieProviders";
 import { useQuery } from "@tanstack/react-query";
 import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { WatchProvider } from "../../models/WatchProvider";
-import { unmountComponentAtNode } from "react-dom";
+import { useUI } from "../UIContext";
 
 interface MovieHeaderProps {
   movie: MovieDetails;
@@ -21,21 +19,22 @@ function MovieHeader({
   movie
 }: MovieHeaderProps) {
   const providers = useQuery<WatchProvider[]>(TmdbQueries.movieWatchProviders(movie.id));
-  const [isModalOpened, setIsModalOpened] = useState(false);
+
+  const { openModal, setModalView, setVideoUrl } = useUI();
+
+  const trailerUrl = getMovieTrailerUrl(movie);
 
   const handlePlayButtonClick = () => {
-    setIsModalOpened(true);
-  }
-
-  const handleCloseModal = () => {
-    setIsModalOpened(false);
+    setModalView("VIDEO_VIEW")
+    setVideoUrl(trailerUrl)
+    openModal()
   }
 
   return (
     <>
       <div
-        className="relative w-full h-[28rem] no-repeat bg-cover bg-center rounded-lg overflow-hidden"
-        style={{ backgroundImage: `url(${getBackdropUrl(movie.backdrop_path)})` }}>
+        className="relative w-full h-[28rem] no-repeat bg-cover bg-center rounded-lg overflow-hidden mb-4"
+        style={{ backgroundImage: `url(${getBackdropUrl(movie.backdrop_path)})`}}>
         <div className="h-full w-full bg-black/50">
           <div className="pl-4 pr-64 py-12 h-full">
             <div className="flex flex-row h-full">
@@ -49,10 +48,12 @@ function MovieHeader({
                     priority={true}
                     className="rounded-lg shadow-lg max-w-none"
                   />
-                  <IoPlayCircleSharp
-                    onClick={handlePlayButtonClick}
-                    className="absolute m-auto inset-0 text-white opacity-90 h-16 w-16 hover:cursor-pointer hover:opacity-100"
-                  />
+                  { trailerUrl && (
+                    <IoPlayCircleSharp
+                      onClick={handlePlayButtonClick}
+                      className="absolute m-auto inset-0 text-white opacity-90 h-16 w-16 hover:cursor-pointer hover:opacity-100"
+                    />
+                  )}
                 </div>
               </div>
               <div>
@@ -108,16 +109,6 @@ function MovieHeader({
           </div>
         </div>
       </div>
-      <div className="mt-3">
-      </div>
-                    
-      {/* <Modal  
-        isOpened={isModalOpened}
-        close={handleCloseModal}>
-          {isModalOpened && ( 
-            <VideoPlayer video={getMovieTrailer(movie)} />
-          )}
-      </Modal> */}
     </>
   )
 }

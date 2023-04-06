@@ -1,27 +1,26 @@
-import { log } from "console";
 import ReactPlayer from "react-player";
-import { generateVideoUrl } from "../../common/helpers/VideoHelper";
-import { Video } from "../../models/Video";
+import { useUI } from "../UIContext";
+import { IoCloseOutline } from "react-icons/io5";
 
-interface VideoPlayerProps {
-  video: Video | undefined;
-}
+function VideoPlayer() {
+  const { videoUrl, closeModal } = useUI();
 
-function VideoPlayer({
-  video
-}: VideoPlayerProps) {
-  if (video === undefined) return null;
-
-    return (
+  return (
     <>
+      <div className="relative">
+        <button className="absolute top-0 right-0" onClick={() => closeModal()}>
+          <IoCloseOutline className="text-2xl text-white" />
+        </button>
+      </div>
+    
       <ReactPlayer 
-        url={generateVideoUrl(video)}
-        controls={true}
-        width={1280}
-        height={720}
+        url={videoUrl} 
+        controls={true} 
+        width={1280} 
+        height={720} 
       />
     </>
-  )
+  );
 }
 
 export default VideoPlayer;

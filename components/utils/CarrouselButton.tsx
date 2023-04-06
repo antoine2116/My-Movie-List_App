@@ -8,9 +8,7 @@ interface CarrouselButtonProps {
 function CarrouselButton({ onClick, position }: CarrouselButtonProps) {
   return (
     <div
-      className={`absolute top-1/3 ${position}-[-1.25rem] z-10 
-        flex items-center justify-center rounded-full shadow-lg bg-white border border-gray-300 
-        w-10 h-10 hover:bg-gray-100 hover:cursor-pointer`}
+      className={`absolute top-1/3 ${position == "left" ? "left-[-1.125rem]" : "right-[-1.125rem]"} z-10 flex items-center justify-center rounded-full shadow-lg bg-white border border-gray-300 w-10 h-10 hover:bg-gray-100 hover:cursor-pointer`}
       onClick={onClick}
     >
       {position === "left" ? 

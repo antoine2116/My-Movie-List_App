@@ -8,6 +8,7 @@ import RegisterForm from "./authentication/RegisterForm";
 import { useUI } from "./UIContext";
 import Toast from "./utils/Toast";
 import SearchPalette from "./search/SearchPalette";
+import VideoPlayer from "./utils/VideoPlayer";
 
 function Layout({ children }: { children: React.ReactNode }) {
 
@@ -20,7 +21,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 				{modalView === 'LOGIN_VIEW' && <LoginForm />}
 				{modalView === 'REGISTER_VIEW' && <RegisterForm />}
 				{modalView === 'SEARCH_VIEW' && <SearchPalette />}
-				{/* {modalView === 'VIDEO_VIEW' && <VideoPlayer />} */}
+				{modalView === 'VIDEO_VIEW' && <VideoPlayer />}
 			</Modal>
 		)
 	}

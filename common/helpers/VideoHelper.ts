@@ -6,13 +6,12 @@ const sites = {
   "vimeo": "https://player.vimeo.com/video/"
 };
 
-export const getMovieTrailer = (movie: MovieDetails): Video | undefined => {
-  return movie.videos.results.find((video) => 
+export const getMovieTrailerUrl = (movie: MovieDetails): string | undefined => {
+  const trailer = movie.videos.results.find((video) => 
     video.type === "Trailer"
   );
-}
 
-export const generateVideoUrl = (video: Video): string | undefined => {
-  if (!video) return undefined;
-  return sites[video.site.toLowerCase() as keyof typeof sites] + video.key;
+  if (!trailer) return undefined;
+
+  return sites[trailer.site.toLowerCase() as keyof typeof sites] + trailer.key;
 }

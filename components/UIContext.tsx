@@ -11,6 +11,7 @@ export interface UIState {
 const initialState = {
   displayModal: false,
   modalView: "LOGIN_VIEW",
+  videoUrl: ""
 }
 
 type Action = 
@@ -23,6 +24,10 @@ type Action =
   | {
     type: "SET_VIEW"
     view: VIEWS
+  }
+  |{
+    type: "SET_VIDEO_URL",
+    url: string
   }
 
 type VIEWS = 
@@ -54,6 +59,12 @@ function uiReducer(state: UIState, action: Action) {
         modalView: action.view
       }
     }
+    case "SET_VIDEO_URL": {
+      return {
+        ...state,
+        videoUrl: action.url
+      }
+    }
   }
 }
 
@@ -75,12 +86,18 @@ export const UIProvider: FC<{ children?: ReactNode }> = (props) => {
     [dispatch]
   )
 
+  const setVideoUrl = useCallback(
+    (url: string) => dispatch({ type: "SET_VIDEO_URL", url}),
+    [dispatch]
+  )
+
   const values = useMemo(
     () => ({
       ...state,
       openModal,
       closeModal,
-      setModalView
+      setModalView,
+      setVideoUrl,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state]
