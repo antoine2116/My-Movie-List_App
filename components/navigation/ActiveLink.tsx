@@ -1,22 +1,25 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 
-function ActiveLink({children, href}: {children: React.ReactNode, href: string}) {
-  const router = useRouter();
-  const defaultClasses: string = "block px-2 text-gray-700 rounded hover:bg-gray-100 hover:bg-transparent hover:text-orange-700";
-  const classes:string = router.pathname === href ? `${defaultClasses} bg-transparent text-orange-600` : defaultClasses;
+interface ActiveLinkProps {
+  children: React.ReactNode;
+  href: string;
+}
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    router.push(href);
-  }
+function ActiveLink({ children, href }: ActiveLinkProps) {
+  const router = useRouter();
 
   return (
     <li>
-      <a href={href} onClick={handleClick} className={classes}>
+      <Link
+        href={href}
+        className={`block px-2 hover:text-orange-700 
+          ${router.asPath === href ? "text-orange-700" : " text-gray-700"}`}
+      >
         {children}
-      </a>
+      </Link>
     </li>
-  )
+  );
 }
 
-export default ActiveLink
+export default ActiveLink;

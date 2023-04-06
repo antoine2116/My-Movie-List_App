@@ -11,7 +11,7 @@ interface MovieCardProps {
 export default function MovieCard({ movie }: MovieCardProps) {
   const [imageLoading, setImageLoading] = React.useState(true);
 
-  const handleLoadImageComplete = (image: any) => {
+  const handleLoadImageComplete = () => {
     setImageLoading(false);
   }
 
@@ -23,12 +23,12 @@ export default function MovieCard({ movie }: MovieCardProps) {
           height={750} 
           src={getImageUrl(movie.poster_path)} 
           alt={movie.title}
-          className={`rounded-lg ${imageLoading ? "loading" : ""}`}
+          className={`rounded-lg object-cover block w-full h-auto aspect-[2/3] ${imageLoading ? "loading" : ""}`}
           onLoadingComplete={handleLoadImageComplete}
         />
       </div>
       <div>
-        <div className={`font-semibold mt-2 ${imageLoading ? "loading" : ""}`}>
+        <div className={`font-semibold mt-2 max-w-full truncate ${imageLoading ? "loading" : ""}`}>
           {movie.title}
         </div>
         <div className={`text-sm text-gray-600 ${imageLoading ? "loading" : ""}`}>
