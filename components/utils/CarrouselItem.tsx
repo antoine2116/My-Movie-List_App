@@ -19,9 +19,9 @@ function CarrouselItem({
         width={500}
         height={750}
         alt={title}
-        className="rounded-lg"
+        className="rounded-lg object-cover block w-full h-auto aspect-[2/3]"
       />
-      <div className="text-black text-sm font-semibold mt-1">
+      <div className="text-black text-sm font-semibold max-w-full truncate mt-1" title={title}>
         {title}
       </div>
 

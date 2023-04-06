@@ -28,7 +28,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         />
       </div>
       <div>
-        <div className={`font-semibold mt-2 max-w-full truncate ${imageLoading ? "loading" : ""}`}>
+        <div className={`font-semibold mt-2 max-w-full truncate ${imageLoading ? "loading" : ""}`} title={movie.title}>
           {movie.title}
         </div>
         <div className={`text-sm text-gray-600 ${imageLoading ? "loading" : ""}`}>
