@@ -45,7 +45,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			<div className="antialiased text-black bg-white">
 				<Navbar />
 				<Sidebar />
-				<div className="ml-64 p-4">
+				<div className="ml-64 py-4 px-6">
 					<ProgressBar />
 					<div className="container mx-auto">
 						<main>{children}</main>

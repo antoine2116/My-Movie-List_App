@@ -46,7 +46,6 @@ export default function Navbar() {
                 <div className="flex items-center">
                   {/* Links */}
                   <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
-                    <ActiveLink href="/">Home</ActiveLink>
                     <ActiveLink href="/watch-list">Watch list</ActiveLink>
                   </ul>
 

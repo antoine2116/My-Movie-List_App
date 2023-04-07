@@ -17,6 +17,28 @@ const getPopularMovies = async (page: number) => {
   return filterMovies(response);
 }
 
+const getTopRatedMovies = async (page: number) => {
+  const response = await TmdbClient.get<PaginationResponse<Movie>>(
+    '/movie/top_rated',
+    {
+      page: page 
+    }
+  );
+
+  return filterMovies(response);
+}
+
+const getUpcomingMovies = async (page: number) => {
+  const response = await TmdbClient.get<PaginationResponse<Movie>>(
+    '/movie/upcoming',
+    {
+      page: page 
+    }
+  );
+
+  return filterMovies(response);
+}
+
 const getMovieDetails = async (id: number) => {
   return await TmdbClient.get<MovieDetails>(
     `/movie/${id}`,
@@ -67,5 +89,7 @@ export const MoviesService = {
   getWatchProviders,
   getMovieCasting,
   getRecommendations,
-  getMoviesByGenre
+  getMoviesByGenre,
+  getTopRatedMovies,
+  getUpcomingMovies
 };

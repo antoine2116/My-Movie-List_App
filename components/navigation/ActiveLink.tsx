@@ -13,8 +13,8 @@ function ActiveLink({ children, href }: ActiveLinkProps) {
     <li>
       <Link
         href={href}
-        className={`block px-2 hover:text-orange-700 
-          ${router.asPath === href ? "text-orange-700" : " text-gray-700"}`}
+        className={`block px-2 hover:text-orange-600 
+          ${router.asPath === href ? "text-orange-600" : " text-gray-700"}`}
       >
         {children}
       </Link>

@@ -21,6 +21,26 @@ export const TmdbQueries = {
     getNextPageParam
   }),
 
+  topRatedMovies: () => ({
+    queryKey: ["topRatedMovies"],
+    queryFn: ({ pageParam = 1 }) =>
+      HttpClient.get<PaginationResponse<Movie>>(
+        "api/movies/toprated", {
+          page: pageParam
+        }),
+    getNextPageParam
+  }),
+
+  upcomingMovies: () => ({
+    queryKey: ["upcomingMovies"],
+    queryFn: ({ pageParam = 1 }) =>
+      HttpClient.get<PaginationResponse<Movie>>(
+        "api/movies/upcoming", {
+          page: pageParam
+        }),
+    getNextPageParam
+  }),
+
   searchMovie: (search: string) => ({
     queryKey: ["search", search],
     queryFn: ({ pageParam = 1}) =>

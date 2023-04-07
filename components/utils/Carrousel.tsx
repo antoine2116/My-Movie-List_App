@@ -47,7 +47,7 @@ function Carrousel({
   }, [scrollPosition, scroll]);
 
   return (
-    <div className="relative">
+    <div className="relative mt-3">
 
       {/* Left scroll button */}
       {scrollPosition !== 0 && (
@@ -63,7 +63,7 @@ function Carrousel({
         ref={scroll}
         onScroll={handleScroll}
       >
-        <div className="flex space-x-3 mb-5">
+        <div className="flex space-x-2 mb-5">
           {
             loading ? <Spinner /> : children
           }
