@@ -12,6 +12,7 @@
   --orange: #ea580c;
   --orange-2: #f97316;
   --red: #b91c1c;
+  --red-light: #fef2f2;
   --accent-0: #fff;
   --accent-1: #fafafa;
   --accent-2: #eaeaea;
@@ -45,4 +46,5 @@
   --accent-2: #333333;
   --accent-1: #111111;
   --accent-0: #000;
+  --red-light: rgb(245, 103, 103, 0.1);
 }

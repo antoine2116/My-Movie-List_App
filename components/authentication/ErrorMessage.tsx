@@ -9,9 +9,9 @@ function ErrorMessage({
   error
 }: ErrorMessageProps) {
   return (
-    <div className="bg-red/50 rounded-lg p-3">
+    <div className="bg-red-light rounded-lg p-3">
       <div className="flex flex-row">
-        <div className="text-red/50 text-lg">
+        <div className="text-red text-lg">
           <IoCloseCircleSharp />
         </div>
         <div className="text-red text-sm ml-3">

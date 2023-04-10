@@ -28,6 +28,7 @@ module.exports = {
         orange: 'var(--orange)',
         'orange-2': 'var(--orange-2)',
         red: 'var(--red)',
+        'red-light': 'var(--red-light)',
       },
       textColor: {
         base: 'var(--text-primary)',

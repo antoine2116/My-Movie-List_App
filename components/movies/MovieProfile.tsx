@@ -1,7 +1,6 @@
 import { MovieDetails } from "../../models/MovieDetails";
 import MovieHeader from "./MovieHeader";
 import MovieCasting from "./MovieCasting";
-import MovieAdditionalInfos from "./MovieAdditonalInfos";
 import MovieRecommendations from "./MovieRecommendations";
 
 interface MovieProfilProps {
@@ -23,7 +22,30 @@ function MovieProfile({
                 <MovieRecommendations movieId={movie.id} />
               </div>
               <div className="border-l border-accent-2 px-5">
-                <MovieAdditionalInfos {...movie} />
+                <div className="text-primary font-semibold">
+                  Release Date
+                </div>
+                <div className="text-secondary text-sm mb-3">
+                  {movie.release_date}
+                </div>
+                <div className="text-primary font-semibold">
+                  Original Language
+                </div>
+                <div className="text-secondary text-sm mb-3">
+                  {movie.original_language}
+                </div>
+                <div className="text-primary font-semibold">
+                  Budget
+                </div>
+                <div className="text-secondary text-sm mb-3">
+                  $ {movie.budget?.toLocaleString()}
+                </div>
+                <div className="text-primary font-semibold">
+                  Revenue
+                </div>
+                <div className="text-secondary text-sm mb-3">
+                  $ {movie.revenue?.toLocaleString()}
+                </div>
               </div>
             </div>
           </div>
