@@ -21,11 +21,11 @@ function Home() {
       {/* Pouplar */}
       <div className="flex justify-between items-center">
         <SectionTitle title="Popular" />
-        <Link href="/popular" className="text-orange-600 hover:text-orange-500">
+        <Link href="/popular" className="text-orange hover:text-orange-2">
           View all
         </Link>
       </div>
-      
+
       <MoviesCarrousel
         movies={popularData}
         isLoading={popularIsLoading}
@@ -36,7 +36,7 @@ function Home() {
       {/* Top Rated */}
       <div className="flex justify-between items-center">
         <SectionTitle title="Top Rated" />
-        <Link href="/top-rated" className="text-orange-600 hover:text-orange-500">
+        <Link href="/top-rated" className="text-orange hover:text-orange-2">
           View all
         </Link>
       </div>
@@ -51,7 +51,7 @@ function Home() {
       {/* Upcoming */}
       <div className="flex justify-between items-center">
         <SectionTitle title="Upcoming" />
-        <Link href="/upcoming" className="text-orange-600 hover:text-orange-500">
+        <Link href="/upcoming" className="text-orange hover:text-orange-2">
           View all
         </Link>
       </div>

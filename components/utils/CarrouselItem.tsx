@@ -21,12 +21,12 @@ function CarrouselItem({
         alt={title}
         className="rounded-lg object-cover block w-full h-auto aspect-[2/3]"
       />
-      <div className="text-black text-sm font-semibold max-w-full truncate mt-1" title={title}>
+      <div className="text-primary text-sm font-semibold max-w-full truncate mt-1" title={title}>
         {title}
       </div>
 
       {subtitle && (
-        <div className="text-gray-400 text-xs">
+        <div className="text-secondary text-xs">
           {subtitle}
         </div>
       )}

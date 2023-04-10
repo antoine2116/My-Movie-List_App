@@ -22,7 +22,7 @@ function MovieProfile({
                 <MovieCasting movieId={movie.id} />
                 <MovieRecommendations movieId={movie.id} />
               </div>
-              <div className="border-l border-gray-300 px-5">
+              <div className="border-l border-accent-2 px-5">
                 <MovieAdditionalInfos {...movie} />
               </div>
             </div>

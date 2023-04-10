@@ -7,14 +7,15 @@ import styles from "./Button.module.css";
 export type ButtonColor =
   | "orange"
   | "white"
+  | "transparent"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   type: "button" | "submit" | "reset";
   color?: ButtonColor;
-  onClick?: () => void;
   loading?: boolean;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 function Button({
@@ -31,6 +32,7 @@ function Button({
     {
       [styles.orange]: color === "orange",
       [styles.white]: color === "white",
+      [styles.transparent]: color === "transparent",
     },
     className,
   )

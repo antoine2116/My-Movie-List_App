@@ -18,10 +18,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
   return (
     <Link href={`/movie/${movie.id}`}>
       <div className="relative">
-        <Image 
-          width={500} 
-          height={750} 
-          src={getImageUrl(movie.poster_path)} 
+        <Image
+          width={500}
+          height={750}
+          src={getImageUrl(movie.poster_path)}
           alt={movie.title}
           className={`rounded-lg object-cover block w-full h-auto aspect-[2/3] ${imageLoading ? "loading" : ""}`}
           onLoadingComplete={handleLoadImageComplete}
@@ -31,7 +31,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <div className={`font-semibold mt-2 max-w-full truncate ${imageLoading ? "loading" : ""}`} title={movie.title}>
           {movie.title}
         </div>
-        <div className={`text-sm text-gray-600 ${imageLoading ? "loading" : ""}`}>
+        <div className={`text-sm text-accent-6 ${imageLoading ? "loading" : ""}`}>
           {movie.release_date}
         </div>
       </div>

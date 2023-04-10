@@ -9,14 +9,14 @@ interface GenreListProps {
 
 export default function GenreList({
   activeId,
-} : GenreListProps) {
+}: GenreListProps) {
 
   const { data } = useQuery<Genres>(TmdbQueries.genres());
 
   return (
     <li>
       <h5 className="flex items-center text-md mb-2">
-        <div className="font-semibold text-black">
+        <div className="font-semibold text-primary">
           Genres
         </div>
       </h5>

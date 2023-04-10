@@ -21,7 +21,7 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const { setModalView, closeModal } = useUI();
   const { login } = useAuth();
-  
+
   const switchToRegister = () => {
     setModalView("REGISTER_VIEW");
   }
@@ -35,10 +35,10 @@ function LoginForm() {
 
       const response = await APIQueries.login(email, password);
       login(response.token);
-      
+
       toast.success("Welcome !");
       closeModal();
-    } catch (err)  {
+    } catch (err) {
       if (err instanceof RestAPIError) {
         setError(err);
       }
@@ -52,33 +52,33 @@ function LoginForm() {
       <form className="mb-4" onSubmit={basicLogin}>
         <AuthTitle title="Login" />
         <div className="space-y-5">
-          <OAuthButton 
+          <OAuthButton
             label="Login with Google"
             icon="/google.png"
             href={getGoogleUrl()}
           />
 
-          <OAuthButton 
+          <OAuthButton
             label="Login with GitHub"
             icon="/github.png"
             href={getGitHubUrl()}
-           />
+          />
 
           <FormSeparator />
 
-          <AuthInput 
-            label="Email" 
-            type="email" 
-            placeholder="Your Email" 
+          <AuthInput
+            label="Email"
+            type="email"
+            placeholder="Your Email"
             icon={<IoMail />}
-            onChange={setEmail} 
+            onChange={setEmail}
           />
 
           <AuthInput
-            label="Password" 
-            type="password" 
-            placeholder="•••••••••" 
-            icon={<IoLockClosed />} 
+            label="Password"
+            type="password"
+            placeholder="•••••••••"
+            icon={<IoLockClosed />}
             onChange={setPassword}
           />
 
@@ -102,7 +102,7 @@ function LoginForm() {
         <span>
           Not registred ?
         </span>
-        <a className="text-orange-600 hover:text-orange-500 cursor-pointer"
+        <a className="text-orange hover:text-orange-2 cursor-pointer"
           onClick={switchToRegister}
         >
           Sign up

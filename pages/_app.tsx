@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 import { Inter } from '@next/font/google'
 import { ManagedUIContext } from '../components/UIContext';
 import { ManagedAuthContext } from '../components/AuthContext';
+import { ThemeProvider } from 'next-themes';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,13 +17,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <main className={inter.className}>
         <ManagedAuthContext>
           <ManagedUIContext>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-            <div id="portal"></div>
+            <ThemeProvider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+              <div id="portal"></div>
+            </ThemeProvider>
           </ManagedUIContext>
         </ManagedAuthContext>
       </main>
-    </QueryClientProvider>
+    </QueryClientProvider >
   )
 }

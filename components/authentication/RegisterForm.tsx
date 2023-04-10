@@ -60,9 +60,9 @@ function RegisterForm({
         <AuthTitle title="Sign Up" />
         <div className="space-y-4">
           <OAuthButton
-            label="Sign Up with Google" 
+            label="Sign Up with Google"
             icon="/google.png"
-            href={getGoogleUrl()} 
+            href={getGoogleUrl()}
           />
 
           <OAuthButton
@@ -118,7 +118,7 @@ function RegisterForm({
         <span>
           Already have an account ?
         </span>
-        <a className="text-orange-600 hover:text-orange-500 cursor-pointer"
+        <a className="text-orange hover:text-orange-2 cursor-pointer"
           onClick={switchToLogin}
         >
           Login

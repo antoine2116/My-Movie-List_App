@@ -20,7 +20,7 @@ function Modal({
   const ref = useRef() as React.MutableRefObject<HTMLDivElement>
 
   useKeyPress(
-    "Escape", 
+    "Escape",
     () => {
       const modal = ref.current;
       if (modal && displayModal) {
@@ -28,7 +28,7 @@ function Modal({
       }
     }
   )
-  
+
   return (
     <div className={`block relative z-20 ${displayModal ? "opactity-100 prevent-scroll" : "opacity-0 pointer-events-none"}`}>
       <div className={`fixed inset-0 ${displayModal ? "opacity-100" : "opacity-0"} bg-black/20 backdrop-blur-sm transition-opacity linear duration-300`} />
@@ -39,7 +39,7 @@ function Modal({
         aria-modal="true"
         onClick={onClose}>
         <div
-          className="shadow-2xl bg-white rounded-lg overflow-hidden transition-all ease-in-out duration-300"
+          className="shadow-2xl bg-primary rounded-lg overflow-hidden transition-all ease-in-out duration-300"
           onClick={handleInsideClick}>
           <div>
             {children}

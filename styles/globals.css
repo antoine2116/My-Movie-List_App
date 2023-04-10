@@ -1,5 +1,6 @@
 /* Tailwind config */
 @tailwind base;
+@import "./base.css";
 @tailwind components;
 @tailwind utilities;
 

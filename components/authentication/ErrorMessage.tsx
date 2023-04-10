@@ -7,15 +7,15 @@ interface ErrorMessageProps {
 
 function ErrorMessage({
   error
-} : ErrorMessageProps) {
+}: ErrorMessageProps) {
   return (
-    <div className="bg-red-50 rounded-lg p-3">
+    <div className="bg-red/50 rounded-lg p-3">
       <div className="flex flex-row">
-        <div className="text-red-400 text-lg">
+        <div className="text-red/50 text-lg">
           <IoCloseCircleSharp />
         </div>
-        <div className="text-red-700 text-sm ml-3">
-          {error.message && 
+        <div className="text-red text-sm ml-3">
+          {error.message &&
             <div className="first-letter:capitalize">
               {error.message}
             </div>

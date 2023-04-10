@@ -41,8 +41,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-
-			<div className="antialiased text-black bg-white">
+			<div className="antialiased text-primary bg-primary">
 				<Navbar />
 				<Sidebar />
 				<div className="ml-64 py-4 px-6">

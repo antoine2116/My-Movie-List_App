@@ -10,31 +10,31 @@ function MovieAdditionalInfos({
   release_date,
   budget,
   revenue
-} : MovieAdditionalInfosProps) {
+}: MovieAdditionalInfosProps) {
   return (
     <>
-      <div className="text-black font-semibold">
+      <div className="text-primary font-semibold">
         Release Date
       </div>
-      <div className="text-gray-700 text-sm mb-3">
+      <div className="text-accent-7 text-sm mb-3">
         {release_date}
       </div>
-      <div className="text-black font-semibold">
+      <div className="text-primary font-semibold">
         Original Language
       </div>
-      <div className="text-gray-700 text-sm mb-3">
+      <div className="text-accent-7 text-sm mb-3">
         {original_language}
       </div>
-      <div className="text-black font-semibold">
+      <div className="text-primary font-semibold">
         Budget
       </div>
-      <div className="text-gray-700 text-sm mb-3">
+      <div className="text-accent-7 text-sm mb-3">
         $ {budget?.toLocaleString()}
       </div>
-      <div className="text-black font-semibold">
+      <div className="text-primary font-semibold">
         Revenue
       </div>
-      <div className="text-gray-700 text-sm mb-3">
+      <div className="text-accent-7 text-sm mb-3">
         $ {revenue?.toLocaleString()}
       </div>
     </>

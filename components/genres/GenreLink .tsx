@@ -9,12 +9,12 @@ interface GenreLinkProps {
 function GenreLink({
   genre,
   active
-} : GenreLinkProps) {
+}: GenreLinkProps) {
   return (
     <li key={genre.id}>
       <Link
         href={`/genre/${genre.id}`}
-        className={`block pl-3 cursor-pointer text-sm text-slate-700 hover:text-orange-600`}>
+        className={`block pl-3 cursor-pointer text-sm text-accent-7 hover:text-orange `}>
         {genre.name}
       </Link>
     </li>

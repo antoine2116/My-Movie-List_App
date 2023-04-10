@@ -1,25 +1,43 @@
 .root {
-  @apply inline-flex items-center font-medium rounded-lg text-sm px-4 py-2
+  @apply inline-flex items-center font-medium rounded-lg text-sm px-4 py-2 h-9
   text-center justify-center cursor-pointer border border-transparent outline-none
-  transition duration-150 ease-in-out
 }
 
-.root:hover {
-  @apply scale-105
-}
-
+/* Orange */
 .orange {
-  @apply bg-orange-600 text-white border-orange-600
+  @apply bg-orange text-white border-orange
+}
+
+.orange:hover {
+  @apply bg-orange-2 text-white border-orange-2
 }
 
 .orange:disabled {
-  @apply bg-orange-400 text-white border-orange-400
+  @apply bg-orange-2 text-white border-orange-2
 }
 
+/* White */
 .white {
-  @apply bg-white text-gray-800  border-gray-300
+  @apply bg-transparent text-accent-8 border-accent-2
+}
+
+.white:hover {
+  @apply bg-accent-1 text-accent-8 border-accent-2
 }
 
 .white:disabled {
-  @apply bg-gray-200 text-gray-800  border-gray-300
+  @apply bg-accent-1 text-accent-8 border-accent-2
+}
+
+/* Transparent */
+.transparent {
+  @apply bg-transparent text-accent-4 border-transparent
+}
+
+.transparent:hover {
+  @apply bg-hover-1 text-accent-5 border-transparent
+}
+
+.transparent:disabled {
+  @apply bg-hover-2 text-accent-5 border-transparent
 }

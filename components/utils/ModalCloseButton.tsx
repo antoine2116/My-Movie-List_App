@@ -4,14 +4,14 @@ interface ModalCloseButtonProps {
   close: () => void;
 }
 
-function ModalCloseButton({ 
+function ModalCloseButton({
   close
- }: ModalCloseButtonProps) {
+}: ModalCloseButtonProps) {
   return (
     <div className="relative">
       <div className="absolute top-0 right-0">
         <button onClick={close}>
-          <IoCloseOutline className="text-2xl text-black" />
+          <IoCloseOutline className="text-2xl text-primary" />
         </button>
       </div>
     </div>
