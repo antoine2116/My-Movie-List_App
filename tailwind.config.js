@@ -27,6 +27,7 @@ module.exports = {
         'accent-9': 'var(--accent-9)',
         orange: 'var(--orange)',
         'orange-2': 'var(--orange-2)',
+        'orange-3': 'var(--orange-3)',
         red: 'var(--red)',
         'red-light': 'var(--red-light)',
       },

@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import Button from '../utils/Button/Button';
-import Link from 'next/link';
+import { LinkButton } from '../utils/Button/Button';
 
 interface OAuthButtonProps {
   label: string;
@@ -14,17 +13,24 @@ function OAuthButton({
   href,
 }: OAuthButtonProps) {
   return (
-    <Button
-      type="button"
-      color="white"
-      className="w-full"
-    >
-      <Link href={href} className="inline-flex">
-        <Image src={icon} alt={label} height="20" width="20" className="mr-3" />
+    <div>
+      <LinkButton
+        href={href}
+        type="button"
+        color="white"
+        className="w-full"
+      >
+        <Image
+          src={icon}
+          alt={label}
+          height="20"
+          width="20"
+          className="mr-3"
+        />
         {label}
-      </Link>
-    </Button>
-  )
+      </LinkButton>
+    </div>
+  );
 }
 
 export default OAuthButton;

@@ -3,17 +3,25 @@
   text-center justify-center cursor-pointer border border-transparent outline-none
 }
 
+.icon {
+  @apply px-2.5
+}
+
 /* Orange */
 .orange {
-  @apply bg-orange text-white border-orange
+  @apply bg-orange text-white
 }
 
 .orange:hover {
-  @apply bg-orange-2 text-white border-orange-2
+  @apply bg-orange-2 border-orange-2
+}
+
+.orange:active {
+  @apply bg-orange-3 border-orange-3
 }
 
 .orange:disabled {
-  @apply bg-orange-2 text-white border-orange-2
+  @apply bg-orange-2 border-orange-2
 }
 
 /* White */
@@ -21,23 +29,31 @@
   @apply bg-transparent text-accent-8 border-accent-2
 }
 
+.white:active {
+  @apply bg-accent-3
+}
+
 .white:hover {
-  @apply bg-accent-1 text-accent-8 border-accent-2
+  @apply bg-accent-1
 }
 
 .white:disabled {
-  @apply bg-accent-1 text-accent-8 border-accent-2
+  @apply bg-accent-1
 }
 
 /* Transparent */
 .transparent {
-  @apply bg-transparent text-accent-4 border-transparent
+  @apply bg-transparent text-accent-5
 }
 
 .transparent:hover {
-  @apply bg-hover-1 text-accent-5 border-transparent
+  @apply bg-accent-2
+}
+
+.transparent:active {
+  @apply bg-accent-1
 }
 
 .transparent:disabled {
-  @apply bg-hover-2 text-accent-5 border-transparent
+  @apply bg-accent-1
 }

@@ -15,7 +15,7 @@ function AuthModal({
   const { closeModal } = useUI()
 
   return (
-    <div className="px-10 py-6 min-w-[20rem] max-w-[24rem]">
+    <div className="px-10 py-6 w-[24rem]">
       <ModalCloseButton close={closeModal} />
 
       <div className="flex flex-col items-center">

@@ -9,7 +9,7 @@ import AuthTitle from "./AuthTitle";
 import ErrorMessage from "./ErrorMessage";
 import OAuthButton from "./OAuthButton";
 import { useAuth } from "../AuthContext";
-import Button from "../utils/Button/Button";
+import { Button} from "../utils/Button/Button";
 import { toast } from "react-toastify";
 import { getGitHubUrl, getGoogleUrl } from "../../common/auth/OAuthUrls";
 import { RestAPIError } from "../../common/clients/RestAPIClient";
@@ -49,7 +49,7 @@ function LoginForm() {
 
   return (
     <AuthModal>
-      <form className="mb-4" onSubmit={basicLogin}>
+      <form className="mb-4 w-full" onSubmit={basicLogin}>
         <AuthTitle title="Login" />
         <div className="space-y-5">
           <OAuthButton

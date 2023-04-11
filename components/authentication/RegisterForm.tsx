@@ -9,7 +9,7 @@ import AuthModal from "./AuthModal";
 import AuthTitle from "./AuthTitle";
 import ErrorMessage from "./ErrorMessage";
 import OAuthButton from "./OAuthButton";
-import Button from "../utils/Button/Button";
+import { Button } from "../utils/Button/Button";
 import { useAuth } from "../AuthContext";
 import { toast } from "react-toastify";
 import { getGitHubUrl, getGoogleUrl } from "../../common/auth/OAuthUrls";
@@ -56,9 +56,9 @@ function RegisterForm({
 
   return (
     <AuthModal>
-      <form className="mb-4" onSubmit={basicRegister}>
+      <form className="mb-4 w-full" onSubmit={basicRegister}>
         <AuthTitle title="Sign Up" />
-        <div className="space-y-4">
+        <div className="space-y-5">
           <OAuthButton
             label="Sign Up with Google"
             icon="/google.png"

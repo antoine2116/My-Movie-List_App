@@ -1,4 +1,4 @@
-import Button from "../utils/Button/Button";
+import { Button} from "../utils/Button/Button";
 import { useKeyPressShortcut } from "../../hooks/useKeyPress";
 
 interface SearchButtonProps {
