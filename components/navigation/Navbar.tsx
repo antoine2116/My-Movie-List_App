@@ -56,9 +56,6 @@ export default function Navbar() {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  {/* Avatar */}
-                  {loggedIn && <NavbarUserButton />}
-
                   {/* Github Link */}
                   <LinkButton
                     href="https://github.com/antoine2116/Apous-Films-Next.js"
@@ -83,6 +80,9 @@ export default function Navbar() {
                       Login
                     </Button>
                   )}
+
+                  {/* Avatar */}
+                  {loggedIn && <NavbarUserButton />}
                 </div>
               </div>
             </div>

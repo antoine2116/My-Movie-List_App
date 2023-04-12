@@ -18,7 +18,7 @@ function NavbarUserButton() {
       <div className="relative">
         {/* Avatar */}
         <div
-          className="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-orange hover:bg-orange ring-2 ring-offset-2 ring-orange-400 rounded-full cursor-pointer transition-transform ease-in-out hover:scale-110"
+          className="relative inline-flex items-center justify-center w-8 h-8 overflow-hidden bg-orange hover:bg-orange ring-2 ring-offset-2 ring-orange rounded-full cursor-pointer transition-transform ease-in-out hover:scale-110"
           onClick={() => setDisplay(!display)}
         >
           <span className="font-medium text-white uppercase">{(user && user.email[0])}</span>
