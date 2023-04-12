@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { getImageUrl } from '../../common/helpers/ImageHelper';
+import { useEffect } from 'react';
 
 interface CarrouselItemProps {
   image_path: string;
@@ -21,17 +22,16 @@ function CarrouselItem({
         alt={title}
         className="rounded-lg object-cover block w-full h-auto aspect-[2/3]"
       />
-      <div className="text-primary text-sm font-semibold max-w-full truncate mt-1" title={title}>
+      <div
+        className="text-primary text-sm font-semibold max-w-full truncate mt-1"
+        title={title}
+      >
         {title}
       </div>
 
-      {subtitle && (
-        <div className="text-secondary text-xs">
-          {subtitle}
-        </div>
-      )}
+      {subtitle && <div className="text-secondary text-xs">{subtitle}</div>}
     </div>
-  )
+  );
 }
 
 export default CarrouselItem;

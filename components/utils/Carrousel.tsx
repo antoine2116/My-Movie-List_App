@@ -4,13 +4,13 @@ import Spinner from "./Spinner";
 import CarrouselButton from "./CarrouselButton";
 
 interface CarrouselProps {
-  loading: boolean;
   children: React.ReactNode;
+  onScrollEnd?: () => void;
 }
 
 function Carrousel({
   children,
-  loading
+  onScrollEnd
 }: CarrouselProps) {
 
   const scroll = useRef<HTMLDivElement>(null);
@@ -46,6 +46,12 @@ function Carrousel({
     }
   }, [scrollPosition, scroll]);
 
+  useEffect(() => {
+    if (scrollEnd && onScrollEnd) {
+      onScrollEnd();
+    }
+  }, [scrollEnd, onScrollEnd]);
+
   return (
     <div className="relative mt-3">
 
@@ -64,9 +70,7 @@ function Carrousel({
         onScroll={handleScroll}
       >
         <div className="flex space-x-2 mb-5">
-          {
-            loading ? <Spinner /> : children
-          }
+          {children}
         </div>
       </div>
 

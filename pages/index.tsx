@@ -12,10 +12,6 @@ import MoviesCarrousel from "../components/movies/MoviesCarrousel";
 import Separator from "../components/utils/Separator";
 
 function Home() {
-  const { data: popularData, isLoading: popularIsLoading } = useQuery<PaginationResponse<Movie>>(TmdbQueries.popularMovies());
-  const { data: topRatedData, isLoading: topRatedIsLoading } = useQuery<PaginationResponse<Movie>>(TmdbQueries.topRatedMovies());
-  const { data: upcomingData, isLoading: upcomingIsLoading } = useQuery<PaginationResponse<Movie>>(TmdbQueries.upcomingMovies());
-
   return (
     <>
       {/* Pouplar */}
@@ -26,10 +22,7 @@ function Home() {
         </Link>
       </div>
 
-      <MoviesCarrousel
-        movies={popularData}
-        isLoading={popularIsLoading}
-      />
+      <MoviesCarrousel query={TmdbQueries.popularMovies()} />
 
       <Separator />
 
@@ -41,10 +34,7 @@ function Home() {
         </Link>
       </div>
 
-      <MoviesCarrousel
-        movies={topRatedData}
-        isLoading={topRatedIsLoading}
-      />
+      <MoviesCarrousel query={TmdbQueries.topRatedMovies()} />
 
       <Separator />
 
@@ -56,10 +46,7 @@ function Home() {
         </Link>
       </div>
 
-      <MoviesCarrousel
-        movies={upcomingData}
-        isLoading={upcomingIsLoading}
-      />
+      <MoviesCarrousel query={TmdbQueries.upcomingMovies()} />
 
     </>
   )

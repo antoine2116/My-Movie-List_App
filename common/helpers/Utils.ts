@@ -4,7 +4,6 @@ import { Movie } from "../../models/Movie";
 import { PaginationResponse } from "../../models/PaginationResponse"
 import { WatchProvider } from "../../models/WatchProvider";
 import { WatchProvidingCountries } from "../../models/WatchProvidingCountries";
-import { log } from "console";
 
 export function getAllResults<T> (data : InfiniteData<PaginationResponse<T>>): T[] {
   return data?.pages?.flatMap((page) => page.results) ?? [];

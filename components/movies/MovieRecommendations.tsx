@@ -15,15 +15,10 @@ interface MovieRecommendationsProps {
 function MovieRecommendations({
   movieId
 } : MovieRecommendationsProps) {
-  const { data, isLoading } = useQuery<PaginationResponse<Movie>>(TmdbQueries.movieRecommendations(movieId));
-
   return (
     <>
       <SectionTitle title="Recommendations" />
-      <MoviesCarrousel
-        movies={data}
-        isLoading={isLoading}
-      />
+      <MoviesCarrousel query={TmdbQueries.movieRecommendations(movieId)} />
     </>
   )
 }
