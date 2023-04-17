@@ -1,53 +1,68 @@
 import { useRef } from "react";
 import { useUI } from "../UIContext";
 import { useKeyPress } from "../../hooks/useKeyPress";
+import { Transition } from "@headlessui/react";
 
 interface ModalProps {
   children: React.ReactNode;
   onClose: () => void;
 }
 
-function Modal({
-  children,
-  onClose
-}: ModalProps) {
+function Modal({ children, onClose }: ModalProps) {
   const { displayModal } = useUI();
 
   const handleInsideClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-  }
+  };
 
-  const ref = useRef() as React.MutableRefObject<HTMLDivElement>
+  const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-  useKeyPress(
-    "Escape",
-    () => {
-      const modal = ref.current;
-      if (modal && displayModal) {
-        onClose();
-      }
+  useKeyPress("Escape", () => {
+    const modal = ref.current;
+    if (modal && displayModal) {
+      onClose();
     }
-  )
+  });
 
   return (
-    <div className={`block relative z-20 ${displayModal ? "opactity-100 prevent-scroll" : "opacity-0 pointer-events-none"}`}>
-      <div className={`fixed inset-0 ${displayModal ? "opacity-100" : "opacity-0"} bg-black/20 backdrop-blur-sm transition-opacity linear duration-300`} />
-      <div
-        className={`fixed inset-0 flex items-start pt-24 justify-center ${displayModal ? "opactiy-100 scale-100" : "opacity-0 scale-95"} transition-all ease-in-out duration-300`}
-        ref={ref}
-        role="dialog"
-        aria-modal="true"
-        onClick={onClose}>
+    <Transition show={displayModal}>
+      <div className={`block relative z-20 ${displayModal ? "opactity-100 prevent-scroll" : "opacity-0 pointer-events-none"}`}>
+        <Transition.Child
+          enter="transition-opacity ease-linear duration-100"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity ease-linear duration-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className={`fixed inset-0 bg-black/20 backdrop-blur-sm`} />
+        </Transition.Child>
         <div
-          className="shadow-2xl bg-primary rounded-lg overflow-hidden transition-all ease-in-out duration-300"
-          onClick={handleInsideClick}>
-          <div>
-            {children}
-          </div>
+          className={`fixed inset-0 flex items-start pt-24 justify-center`}
+          ref={ref}
+          role="dialog"
+          aria-modal="true"
+          onClick={onClose}
+        >
+          <Transition.Child
+            enter="transition-all ease-linear duration-100"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100"
+            leave="transition-all ease-linear duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div
+              className="shadow-2xl bg-primary rounded-lg overflow-hidden"
+              onClick={handleInsideClick}
+            >
+              <div>{children}</div>
+            </div>
+          </Transition.Child>
         </div>
       </div>
-    </div>
-  )
+    </Transition>
+  );
 }
 
 export default Modal;
