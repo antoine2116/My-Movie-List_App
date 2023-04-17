@@ -1,5 +1,5 @@
 import { Cast } from "../../models/Cast";
-import { Genres } from "../../models/Genre";
+import { Genre, Genres } from "../../models/Genre";
 import { Movie } from "../../models/Movie";
 import { MovieDetails } from "../../models/MovieDetails";
 import { PaginationResponse } from "../../models/PaginationResponse";
@@ -91,6 +91,12 @@ export const TmdbQueries = {
     queryKey: ["genres", "all"],
     queryFn: () => HttpClient.get<Genres>(`/api/genre/movie/list`)
   }),  
+
+  genreById: (id: number) => ({
+    queryKey: ["genre", id],
+    queryFn: () => HttpClient.get<Genre>(`/api/genre/movie/${id}`),
+    enabled: id !== 0
+  }),
 
   moviesByGenre: (id: number) => ({
     queryKey: ["moviesByGenre", id],

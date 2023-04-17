@@ -35,6 +35,7 @@ module.exports = {
         base: 'var(--text-primary)',
         primary: 'var(--text-primary)',
         secondary: 'var(--text-secondary)',
+        'secondary-2': 'var(--text-secondary-2)'
       },
     },
   },

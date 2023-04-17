@@ -6,6 +6,7 @@
   --text-base: #000000;
   --text-primary: #000000;
   --text-secondary: #9ca3af;
+  --text-secondary-2: #cccfd4;
   --hover: rgba(0, 0, 0, 0.075);
   --hover-1: rgba(0, 0, 0, 0.15);
   --hover-2: rgba(0, 0, 0, 0.25);
@@ -37,6 +38,7 @@
   --selection: var(--purple);
   --text-primary: #e7e5eb;
   --text-secondary: #9ca3af;
+  --text-secondary-2: #cccfd4;
   --accent-9: #fff;
   --accent-8: #fafafa;
   --accent-7: #eaeaea;

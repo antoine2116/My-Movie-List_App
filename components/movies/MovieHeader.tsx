@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import { TmdbQueries } from "../../common/queries/TmdbQueries";
 import { WatchProvider } from "../../models/WatchProvider";
 import { useUI } from "../UIContext";
+import Link from "next/link";
 
 interface MovieHeaderProps {
   movie: MovieDetails;
@@ -60,12 +61,12 @@ function MovieHeader({
                 <div className="mb-2">
                   <div className="flex text-4xl text-white font-bold">
                     {movie.title}
-                    <div className="inline-block self-end text-2xl text-secondary font-semibold ml-2">
+                    <div className="inline-block self-end text-2xl text-secondary-2 font-semibold ml-2">
                       ({movie.release_date?.split("-")[0]})
                     </div>
                   </div>
                 </div>
-                <div className="text-lg text-secondary italic font-semibold">
+                <div className="text-lg text-secondary-2 italic font-semibold">
                   {movie.tagline}
                 </div>
                 <div className="text-lg text-white font-semibold mb-2">
@@ -75,9 +76,12 @@ function MovieHeader({
                   <div>
                     <div className="flex flex-row space-x-2 mb-3">
                       {movie.genres.map((genre) => (
-                        <div key={genre.id} className="inline-flex justify-center px-2.5 py-0.5 bg-primary rounded-xl border border-accent-2 text-sm text-primary font-semibold shadow-xl">
+                        <Link 
+                          href={`/genre/${genre.id}`}
+                          key={genre.id} 
+                          className="inline-flex justify-center px-2.5 py-0.5 bg-primary rounded-xl border-accent-2 text-sm text-primary font-semibold shadow-xl hover:bg-orange hover:text-white">
                           {genre.name}
-                        </div>
+                        </Link>
                       ))}
                     </div>
                     <div className="flex flex-row space-x-2 mb-2">

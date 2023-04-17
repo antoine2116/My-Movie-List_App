@@ -33,8 +33,8 @@ export default function MovieList({ query } : MovieListProps) {
     <p>Error !</p>
   ) : (
 		<>
-			<div>
-				<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+			<div className="py-2">
+				<div className="grid sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-4">
 					{getAllResults(data).map((movie: Movie) => (
 						<MovieCard
 							key={movie.id}
