@@ -43,7 +43,7 @@ function RegisterForm({
       const response = await APIQueries.register(email, password, passwordConfirmation);
       login(response.token);
 
-      toast.success("Welcome to Apou's Films!");
+      toast.success("Welcome to My Movie List!");
       closeModal();
     } catch (err) {
       if (err instanceof RestAPIError) {

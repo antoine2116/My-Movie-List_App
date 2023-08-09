@@ -36,8 +36,8 @@ function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<>
 			<Head>
-				<title>Apou&apos;s Films</title>
-				<meta name="description" content="Apou&apos;s Films" />
+				<title>My Movie List</title>
+				<meta name="description" content="My Movie List" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 

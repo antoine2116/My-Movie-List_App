@@ -45,7 +45,7 @@ export default function Navbar() {
                     />
                   </span>
                   <span className="self-center text-xl font-semibold whitespace-nowrap">
-                    Apou&apos;s Films
+                    My Movie List
                   </span>
                 </Link>
               </div>
@@ -58,7 +58,7 @@ export default function Navbar() {
                 <div className="flex items-center space-x-2">
                   {/* Github Link */}
                   <LinkButton
-                    href="https://github.com/antoine2116/Apous-Films-Next.js"
+                    href="https://github.com/antoine2116/My-Movie-List_App"
                     target="_blank"
                     type="button"
                     color="transparent"

@@ -12,7 +12,7 @@ function Popular() {
       </HeaderTitle>
 
       <HeaderSubtitle>
-        Discover the latest and greatest films that everyone is watching right now
+        Discover the latest and greatest movies that everyone is watching right now
       </HeaderSubtitle>
 
       <Separator />
