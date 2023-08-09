@@ -7,8 +7,8 @@ It harnesses [The Movie Database API](https://developer.themoviedb.org/reference
 The UI is styled using [Tailwind CSS](https://tailwindcss.com/) to ensure an intuitive and responsive user experience.
 
 ## Preview
-![Preview](https://github.com/antoine2116/My-Movie-List_App/preview\preview-dark.png#gh-dark-mode-only)
-![Preview](https://github.com/antoine2116/My-Movie-List_App/preview\preview-dark.png#gh-light-mode-only)
+![Preview](https://github.com/antoine2116/My-Movie-List_App/blob/main/preview/preview-dark.png?raw=true#gh-dark-mode-only)
+![Preview](https://github.com/antoine2116/My-Movie-List_App/blob/main/preview/preview-light.png?raw=true#gh-light-mode-only)
 
 ## Getting Started
 
