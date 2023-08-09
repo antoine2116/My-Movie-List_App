@@ -49,7 +49,7 @@ npm run dev
 
 Open your web browser and navigate to http://localhost:3000.
 
-## Todo:
+## Todo
 
 - Film page : share button on the detail panel, check other website to display more infos, invert percentage
 - Home page : netflix like (categories with carousel)
